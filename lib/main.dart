@@ -83,7 +83,7 @@ class _MainPageContollerState extends State<MainPageContoller> {
             color: _page == 3 ? Colors.white : Colors.grey,
           ),
           Image.asset(
-            'assets/icons/bag.png',
+            'assets/icons/user.png',
             color: _page == 4 ? Colors.white : Colors.grey,
           ),
         ],
