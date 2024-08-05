@@ -1,6 +1,9 @@
+import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:adaptive_theme/adaptive_theme.dart';
-import 'package:curved_navigation_bar/curved_navigation_bar.dart';
+import 'package:online_market/main_page_controller.dart';
+import 'package:online_market/splash_screen.dart';
+import 'package:page_transition/page_transition.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -37,131 +40,16 @@ class OnlineMarket extends StatelessWidget {
       ),
       initial: savedThemeMode ?? AdaptiveThemeMode.light,
       builder: (theme, darkTheme) => MaterialApp(
-        debugShowCheckedModeBanner: false,
-        theme: theme,
-        darkTheme: darkTheme,
-        home: const MainPageContoller(),
-      ),
-      debugShowFloatingThemeButton: false,
+          debugShowCheckedModeBanner: false,
+          theme: theme,
+          darkTheme: darkTheme,
+          home: const SplashScreen()),
     );
   }
 }
 
-class MainPageContoller extends StatefulWidget {
-  const MainPageContoller({super.key});
 
-  @override
-  State<MainPageContoller> createState() => _MainPageContollerState();
-}
 
-class _MainPageContollerState extends State<MainPageContoller> {
-  int _page = 0;
-  GlobalKey<CurvedNavigationBarState> _bottomNavigationKey = GlobalKey();
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: const Color.fromRGBO(245, 245, 245, 1),
-      bottomNavigationBar: CurvedNavigationBar(
-        key: _bottomNavigationKey,
-        index: 0,
-        items: <Widget>[
-          Image.asset(
-            'assets/icons/home.png',
-            color: _page == 0 ? Colors.white : Colors.grey,
-          ),
-          Image.asset(
-            'assets/icons/favorite.png',
-            color: _page == 1 ? Colors.white : Colors.grey,
-          ),
-          Image.asset(
-            'assets/icons/bag.png',
-            color: _page == 2 ? Colors.white : Colors.grey,
-          ),
-          Image.asset(
-            'assets/icons/search.png',
-            color: _page == 3 ? Colors.white : Colors.grey,
-          ),
-          Image.asset(
-            'assets/icons/user.png',
-            color: _page == 4 ? Colors.white : Colors.grey,
-          ),
-        ],
-        color: Colors.white,
-        buttonBackgroundColor: Colors.blue,
-        backgroundColor: const Color.fromRGBO(245, 245, 245, 1),
-        animationCurve: Curves.easeInOut,
-        animationDuration: const Duration(milliseconds: 300),
-        onTap: (index) {
-          setState(() {
-            _page = index;
-          });
-        },
-        letIndexChange: (index) => true,
-      ),
-      body: Container(
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Text(_page.toString(), style: TextStyle(fontSize: 160)),
-              ElevatedButton(
-                child: Text('Go To Page of index 1'),
-                onPressed: () {
-                  final CurvedNavigationBarState? navBarState =
-                      _bottomNavigationKey.currentState;
-                  navBarState?.setPage(1);
-                },
-              )
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-// class HomePage extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: AppBar(
-//         title: Text('Home Page'),
-//       ),
-//       body: Center(
-//         child: Text('This is the Home Page'),
-//       ),
-//     );
-//   }
-// }
-
-// class ProfilePage extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: AppBar(
-//         title: Text('Profile Page'),
-//       ),
-//       body: Center(
-//         child: Text('This is the Profile Page'),
-//       ),
-//     );
-//   }
-// }
-
-// class SettingsPage extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: AppBar(
-//         title: Text('Settings Page'),
-//       ),
-//       body: Center(
-//         child: Text('This is the Settings Page'),
-//       ),
-//     );
-//   }
-// }
 
 
 //dark and light mode switcher
