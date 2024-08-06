@@ -1,5 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
+import 'package:online_market/bag_page/bag_page.dart';
+import 'package:online_market/error_page/error_page.dart';
+import 'package:online_market/favorite_page/favorite_page.dart';
+import 'package:online_market/home_page/home_page.dart';
+import 'package:online_market/search_page/search_page.dart';
+import 'package:online_market/user_page/user_page.dart';
 
 class MainPageContoller extends StatefulWidget {
   const MainPageContoller({super.key});
@@ -53,24 +59,25 @@ class _MainPageContollerState extends State<MainPageContoller> {
         },
         letIndexChange: (index) => true,
       ),
-      body: Container(
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Text(_page.toString(), style: TextStyle(fontSize: 160)),
-              ElevatedButton(
-                child: Text('Go To Page of index 1'),
-                onPressed: () {
-                  final CurvedNavigationBarState? navBarState =
-                      _bottomNavigationKey.currentState;
-                  navBarState?.setPage(1);
-                },
-              )
-            ],
-          ),
-        ),
-      ),
+      body: _getPage(_page),
     );
+  }
+
+  // The function for navigate pages
+  Widget _getPage(int page) {
+    switch (page) {
+      case 0:
+        return const HomePage();
+      case 1:
+        return const FavoritePage();
+      case 2:
+        return const BagPage();
+      case 3:
+        return const SearchPage();
+      case 4:
+        return const UserPage();
+      default:
+        return const ErrorPage();
+    }
   }
 }
