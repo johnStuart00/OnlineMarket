@@ -66,33 +66,33 @@ class _ProductContainerWidgetState extends State<ProductContainerWidget> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SizedBox(height: 10),
-                Padding(
-                  padding: const EdgeInsets.only(left: 10.0),
+                const SizedBox(height: 10),
+                const Padding(
+                  padding: EdgeInsets.only(left: 10.0),
                   child: Text('BEST SELLER'),
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 10.0),
+                const Padding(
+                  padding: EdgeInsets.only(left: 10.0),
                   child: Text('Nike Jordan'),
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Padding(
-                      padding: const EdgeInsets.only(left: 10.0),
+                    const Padding(
+                      padding: EdgeInsets.only(left: 10.0),
                       child: Text('\$302.00'),
                     ),
                     Container(
                       decoration: BoxDecoration(
                         color: Colors.blue[400],
-                        borderRadius: BorderRadius.only(
+                        borderRadius: const BorderRadius.only(
                           topLeft: Radius.circular(10),
                           bottomRight: Radius.circular(10),
                         ),
                       ),
                       child: IconButton(
                         onPressed: () {},
-                        icon: Icon(Icons.add),
+                        icon: const Icon(Icons.add),
                         color: Colors.white,
                       ),
                     )

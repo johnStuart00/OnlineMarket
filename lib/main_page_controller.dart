@@ -16,7 +16,7 @@ class MainPageContoller extends StatefulWidget {
 
 class _MainPageContollerState extends State<MainPageContoller> {
   int _page = 0;
-  GlobalKey<CurvedNavigationBarState> _bottomNavigationKey = GlobalKey();
+  final GlobalKey<CurvedNavigationBarState> _bottomNavigationKey = GlobalKey();
 
   @override
   Widget build(BuildContext context) {
