@@ -13,7 +13,7 @@ class SplashScreen extends StatelessWidget {
     return AnimatedSplashScreen(
       splash: const SplashWidget(),
       nextScreen: const MainPageContoller(),
-      animationDuration: const Duration(seconds: 5),
+      animationDuration: const Duration(seconds: 1),
       splashIconSize: 200,
     );
   }
