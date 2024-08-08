@@ -30,168 +30,172 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CustomScrollView(
-      slivers: [
-        SliverPadding(
-          padding: const EdgeInsets.only(left: 10.0),
-          sliver: SliverList(
-            delegate: SliverChildListDelegate([
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const SizedBox(height: 5),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    return SafeArea(
+      child: Scaffold(
+        body: CustomScrollView(
+          slivers: [
+            SliverPadding(
+              padding: const EdgeInsets.only(left: 10.0),
+              sliver: SliverList(
+                delegate: SliverChildListDelegate([
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const LargeTextWidget(
-                          widgetText: 'Explore',
+                        const SizedBox(height: 5),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            const LargeTextWidget(
+                              widgetText: 'Explore',
+                            ),
+                            Container(
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(30),
+                              ),
+                              child: IconButton(
+                                  onPressed: () {},
+                                  icon: const Icon(Icons.shopping_bag_rounded)),
+                            )
+                          ],
                         ),
-                        Container(
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(30),
-                          ),
-                          child: IconButton(
-                              onPressed: () {},
-                              icon: const Icon(Icons.shopping_bag_rounded)),
-                        )
+                        const SizedBox(height: 5),
+                        const MiddleTextWidget(
+                          widgetText: 'Select Category',
+                        ),
                       ],
                     ),
-                    const SizedBox(height: 5),
-                    const MiddleTextWidget(
-                      widgetText: 'Select Category',
-                    ),
-                  ],
-                ),
-              ),
-              SizedBox(
-                height: 50,
-                child: ListView.builder(
-                  scrollDirection: Axis.horizontal,
-                  itemCount: categoryNames.length,
-                  itemBuilder: (BuildContext context, int index) {
-                    return Padding(
-                      padding: const EdgeInsets.symmetric(
-                        vertical: 5.0,
-                        horizontal: 5.0,
-                      ),
-                      child: CategoryWidget(
-                        categoryName: categoryNames[index],
-                      ),
-                    );
-                  },
-                ),
-              ),
-              const Padding(
-                padding: EdgeInsets.all(8.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    MiddleTextWidget(widgetText: 'Brendler'),
-                    MarkerTextWidget(widgetText: 'See all')
-                  ],
-                ),
-              ),
-              SizedBox(
-                height: 70,
-                child: ListView.builder(
-                  scrollDirection: Axis.horizontal,
-                  itemCount: brendImagePaths.length,
-                  itemBuilder: (BuildContext context, int index) {
-                    return Padding(
-                      padding: const EdgeInsets.symmetric(
-                        vertical: 5.0,
-                        horizontal: 5.0,
-                      ),
-                      child: GestureDetector(
-                        onTap: () {},
-                        child: BrendWidget(
-                          brendImage: Image.asset(brendImagePaths[index]),
-                        ),
-                      ),
-                    );
-                  },
-                ),
-              ),
-              const Padding(
-                padding: EdgeInsets.all(8.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    MiddleTextWidget(widgetText: 'Popular products'),
-                    MarkerTextWidget(widgetText: 'See all')
-                  ],
-                ),
-              ),
-              SizedBox(
-                height: 250,
-                child: ListView.builder(
-                  scrollDirection: Axis.horizontal,
-                  itemCount: 10,
-                  itemBuilder: (BuildContext context, int index) {
-                    return Padding(
-                      padding: const EdgeInsets.symmetric(
-                        vertical: 5.0,
-                        horizontal: 5.0,
-                      ),
-                      child: GestureDetector(
-                        onTap: () {
-                          Navigator.of(context).push(
-                            MaterialPageRoute(
-                              builder: (context) => FavoriteWidget(),
-                            ),
-                          );
-                        },
-                        child: ProductContainerWidget(),
-                      ),
-                    );
-                  },
-                ),
-              ),
-              const Padding(
-                padding: EdgeInsets.all(8.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    MiddleTextWidget(widgetText: 'New Arrivals'),
-                    MarkerTextWidget(widgetText: 'See all')
-                  ],
-                ),
-              ),
-            ]),
-          ),
-        ),
-        SliverPadding(
-          padding: const EdgeInsets.all(8.0),
-          sliver: SliverGrid(
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2,
-              crossAxisSpacing: 10.0,
-              mainAxisSpacing: 10.0,
-              childAspectRatio: (ScreenUtil.screenWidth(context) / 2) / 300,
-            ),
-            delegate: SliverChildBuilderDelegate(
-              (BuildContext context, int index) {
-                return Padding(
-                  padding: EdgeInsets.all(5.0),
-                  child: GestureDetector(
-                      onTap: () {
-                        Navigator.of(context).push(
-                          MaterialPageRoute(
-                            builder: (context) => FavoriteWidget(),
+                  ),
+                  SizedBox(
+                    height: 50,
+                    child: ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      itemCount: categoryNames.length,
+                      itemBuilder: (BuildContext context, int index) {
+                        return Padding(
+                          padding: const EdgeInsets.symmetric(
+                            vertical: 5.0,
+                            horizontal: 5.0,
+                          ),
+                          child: CategoryWidget(
+                            categoryName: categoryNames[index],
                           ),
                         );
                       },
-                      child: ProductContainerWidget()),
-                );
-              },
-              childCount: 10,
+                    ),
+                  ),
+                  const Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        MiddleTextWidget(widgetText: 'Brendler'),
+                        MarkerTextWidget(widgetText: 'See all')
+                      ],
+                    ),
+                  ),
+                  SizedBox(
+                    height: 70,
+                    child: ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      itemCount: brendImagePaths.length,
+                      itemBuilder: (BuildContext context, int index) {
+                        return Padding(
+                          padding: const EdgeInsets.symmetric(
+                            vertical: 5.0,
+                            horizontal: 5.0,
+                          ),
+                          child: GestureDetector(
+                            onTap: () {},
+                            child: BrendWidget(
+                              brendImage: Image.asset(brendImagePaths[index]),
+                            ),
+                          ),
+                        );
+                      },
+                    ),
+                  ),
+                  const Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        MiddleTextWidget(widgetText: 'Popular products'),
+                        MarkerTextWidget(widgetText: 'See all')
+                      ],
+                    ),
+                  ),
+                  SizedBox(
+                    height: 250,
+                    child: ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      itemCount: 10,
+                      itemBuilder: (BuildContext context, int index) {
+                        return Padding(
+                          padding: const EdgeInsets.symmetric(
+                            vertical: 5.0,
+                            horizontal: 5.0,
+                          ),
+                          child: GestureDetector(
+                            onTap: () {
+                              Navigator.of(context).push(
+                                MaterialPageRoute(
+                                  builder: (context) => FavoriteWidget(),
+                                ),
+                              );
+                            },
+                            child: ProductContainerWidget(),
+                          ),
+                        );
+                      },
+                    ),
+                  ),
+                  const Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        MiddleTextWidget(widgetText: 'New Arrivals'),
+                        MarkerTextWidget(widgetText: 'See all')
+                      ],
+                    ),
+                  ),
+                ]),
+              ),
             ),
-          ),
+            SliverPadding(
+              padding: const EdgeInsets.all(8.0),
+              sliver: SliverGrid(
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  crossAxisSpacing: 10.0,
+                  mainAxisSpacing: 10.0,
+                  childAspectRatio: (ScreenUtil.screenWidth(context) / 2) / 300,
+                ),
+                delegate: SliverChildBuilderDelegate(
+                  (BuildContext context, int index) {
+                    return Padding(
+                      padding: EdgeInsets.all(5.0),
+                      child: GestureDetector(
+                          onTap: () {
+                            Navigator.of(context).push(
+                              MaterialPageRoute(
+                                builder: (context) => FavoriteWidget(),
+                              ),
+                            );
+                          },
+                          child: ProductContainerWidget()),
+                    );
+                  },
+                  childCount: 10,
+                ),
+              ),
+            ),
+          ],
         ),
-      ],
+      ),
     );
   }
 }

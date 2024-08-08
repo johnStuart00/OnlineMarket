@@ -78,40 +78,44 @@ class _UserPageState extends State<UserPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-      const SizedBox(height: 20),
-      const Text('Profile'),
-      const SizedBox(height: 20),
-      Expanded(
-        child: GridView.builder(
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 3,
-              crossAxisSpacing: 5,
-              mainAxisSpacing: 5,
-            ),
-            itemCount: _sections.length,
-            itemBuilder: (BuildContext context, int index) {
-              final section = _sections[index];
-              return UserPageWidget(
-                icon: section.icon,
-                label: section.label,
-                onTap: () {
-                  if (section.label == 'Notifications') {
-                    _showNotificationDialog(context);
-                  } else if (section.label == 'Keep in touch') {
-                    _showContactInfoDialog(context);
-                  } else if (section.label == 'About us') {
-                    _showAboutUsDialog(context);
-                  } else if (section.label == 'Language') {
-                    _showLanguageDialog(context);
-                  } else if (section.label == 'Theme') {
-                    _showThemeDialog(context);
-                  }
-                },
-              );
-            }),
-      )
-    ]);
+    return SafeArea(
+      child: Scaffold(
+        body: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+          const SizedBox(height: 20),
+          const Text('Profile'),
+          const SizedBox(height: 20),
+          Expanded(
+            child: GridView.builder(
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 3,
+                  crossAxisSpacing: 5,
+                  mainAxisSpacing: 5,
+                ),
+                itemCount: _sections.length,
+                itemBuilder: (BuildContext context, int index) {
+                  final section = _sections[index];
+                  return UserPageWidget(
+                    icon: section.icon,
+                    label: section.label,
+                    onTap: () {
+                      if (section.label == 'Notifications') {
+                        _showNotificationDialog(context);
+                      } else if (section.label == 'Keep in touch') {
+                        _showContactInfoDialog(context);
+                      } else if (section.label == 'About us') {
+                        _showAboutUsDialog(context);
+                      } else if (section.label == 'Language') {
+                        _showLanguageDialog(context);
+                      } else if (section.label == 'Theme') {
+                        _showThemeDialog(context);
+                      }
+                    },
+                  );
+                }),
+          )
+        ]),
+      ),
+    );
   }
 
   void _showNotificationDialog(BuildContext context) {
