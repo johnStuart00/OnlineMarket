@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:adaptive_theme/adaptive_theme.dart';
+import 'package:online_market/splash_screen.dart';
 import 'package:online_market/widgets/favorite_widget.dart';
 
 void main() async {
@@ -40,7 +41,7 @@ class OnlineMarket extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           theme: theme,
           darkTheme: darkTheme,
-          home: FavoriteWidget()),
+          home: const SplashScreen()),
     );
   }
 }

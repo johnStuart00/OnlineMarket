@@ -1,4 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:online_market/utils/screen_size.dart';
 import 'package:online_market/widgets/brend_container_widget.dart';
 import 'package:online_market/widgets/category_container_widget.dart';
@@ -104,13 +106,7 @@ class HomePage extends StatelessWidget {
                         horizontal: 5.0,
                       ),
                       child: GestureDetector(
-                        onTap: () {
-                          Navigator.of(context).push(
-                            MaterialPageRoute(
-                              builder: (context) => FavoriteWidget(),
-                            ),
-                          );
-                        },
+                        onTap: () {},
                         child: BrendWidget(
                           brendImage: Image.asset(brendImagePaths[index]),
                         ),
@@ -135,12 +131,22 @@ class HomePage extends StatelessWidget {
                   scrollDirection: Axis.horizontal,
                   itemCount: 10,
                   itemBuilder: (BuildContext context, int index) {
-                    return const Padding(
-                        padding: EdgeInsets.symmetric(
-                          vertical: 5.0,
-                          horizontal: 5.0,
-                        ),
-                        child: ProductContainerWidget());
+                    return Padding(
+                      padding: const EdgeInsets.symmetric(
+                        vertical: 5.0,
+                        horizontal: 5.0,
+                      ),
+                      child: GestureDetector(
+                        onTap: () {
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) => FavoriteWidget(),
+                            ),
+                          );
+                        },
+                        child: ProductContainerWidget(),
+                      ),
+                    );
                   },
                 ),
               ),
@@ -168,9 +174,17 @@ class HomePage extends StatelessWidget {
             ),
             delegate: SliverChildBuilderDelegate(
               (BuildContext context, int index) {
-                return const Padding(
+                return Padding(
                   padding: EdgeInsets.all(5.0),
-                  child: ProductContainerWidget(),
+                  child: GestureDetector(
+                      onTap: () {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) => FavoriteWidget(),
+                          ),
+                        );
+                      },
+                      child: ProductContainerWidget()),
                 );
               },
               childCount: 10,

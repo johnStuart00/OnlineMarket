@@ -20,48 +20,46 @@ class _MainPageContollerState extends State<MainPageContoller> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
+    return Scaffold(
+      backgroundColor: const Color.fromRGBO(245, 245, 245, 1),
+      bottomNavigationBar: CurvedNavigationBar(
+        key: _bottomNavigationKey,
+        index: 0,
+        items: <Widget>[
+          Image.asset(
+            'assets/icons/home.png',
+            color: _page == 0 ? Colors.white : Colors.grey,
+          ),
+          Image.asset(
+            'assets/icons/favorite.png',
+            color: _page == 1 ? Colors.white : Colors.grey,
+          ),
+          Image.asset(
+            'assets/icons/bag.png',
+            color: _page == 2 ? Colors.white : Colors.grey,
+          ),
+          Image.asset(
+            'assets/icons/search.png',
+            color: _page == 3 ? Colors.white : Colors.grey,
+          ),
+          Image.asset(
+            'assets/icons/user.png',
+            color: _page == 4 ? Colors.white : Colors.grey,
+          ),
+        ],
+        color: Colors.white,
+        buttonBackgroundColor: Colors.blue,
         backgroundColor: const Color.fromRGBO(245, 245, 245, 1),
-        bottomNavigationBar: CurvedNavigationBar(
-          key: _bottomNavigationKey,
-          index: 0,
-          items: <Widget>[
-            Image.asset(
-              'assets/icons/home.png',
-              color: _page == 0 ? Colors.white : Colors.grey,
-            ),
-            Image.asset(
-              'assets/icons/favorite.png',
-              color: _page == 1 ? Colors.white : Colors.grey,
-            ),
-            Image.asset(
-              'assets/icons/bag.png',
-              color: _page == 2 ? Colors.white : Colors.grey,
-            ),
-            Image.asset(
-              'assets/icons/search.png',
-              color: _page == 3 ? Colors.white : Colors.grey,
-            ),
-            Image.asset(
-              'assets/icons/user.png',
-              color: _page == 4 ? Colors.white : Colors.grey,
-            ),
-          ],
-          color: Colors.white,
-          buttonBackgroundColor: Colors.blue,
-          backgroundColor: const Color.fromRGBO(245, 245, 245, 1),
-          animationCurve: Curves.easeInOut,
-          animationDuration: const Duration(milliseconds: 300),
-          onTap: (index) {
-            setState(() {
-              _page = index;
-            });
-          },
-          letIndexChange: (index) => true,
-        ),
-        body: _getPage(_page),
+        animationCurve: Curves.easeInOut,
+        animationDuration: const Duration(milliseconds: 300),
+        onTap: (index) {
+          setState(() {
+            _page = index;
+          });
+        },
+        letIndexChange: (index) => true,
       ),
+      body: _getPage(_page),
     );
   }
 
