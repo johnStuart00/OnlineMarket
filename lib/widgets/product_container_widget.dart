@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:online_market/widgets/text_widgets/marker_text_widget.dart';
+import 'package:online_market/widgets/text_widgets/middle_text_widget.dart';
 
 class ProductContainerWidget extends StatefulWidget {
   const ProductContainerWidget({super.key});
@@ -69,19 +71,18 @@ class _ProductContainerWidgetState extends State<ProductContainerWidget> {
                 const SizedBox(height: 10),
                 const Padding(
                   padding: EdgeInsets.only(left: 10.0),
-                  child: Text('BEST SELLER'),
+                  child: MarkerTextWidget(widgetText: 'BEST SELLER'),
                 ),
                 const Padding(
                   padding: EdgeInsets.only(left: 10.0),
-                  child: Text('Nike Jordan'),
+                  child: MiddleTextWidget(widgetText: 'Nike Jordan'),
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     const Padding(
-                      padding: EdgeInsets.only(left: 10.0),
-                      child: Text('\$302.00'),
-                    ),
+                        padding: EdgeInsets.only(left: 10.0),
+                        child: MiddleTextWidget(widgetText: '\$302.00')),
                     Container(
                       decoration: BoxDecoration(
                         color: Colors.blue[400],

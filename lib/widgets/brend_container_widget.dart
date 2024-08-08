@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:online_market/utils/screen_size.dart';
 
 class BrendWidget extends StatelessWidget {
   final Image brendImage;
@@ -11,7 +12,8 @@ class BrendWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: Container(
-        height: 50,
+        width: ScreenUtil.setWidth(context, 0.2), //20% of the screen
+        height: ScreenUtil.setHeight(context, 0.2), // 20% of the screen
         padding: const EdgeInsets.only(right: 10.0, left: 10.0),
         decoration: BoxDecoration(
             color: Colors.white,
