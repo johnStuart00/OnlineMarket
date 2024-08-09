@@ -1,42 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:online_market/utils/screen_size.dart';
-import 'package:online_market/widgets/bag_page_container_widget.dart';
-import 'package:online_market/widgets/checkout_widget.dart';
+import 'package:online_market/widgets/phone_number_widget.dart';
 import 'package:online_market/widgets/text_widgets/large_text_widget.dart';
 import 'package:online_market/widgets/text_widgets/marker_text_widget.dart';
 import 'package:online_market/widgets/text_widgets/middle_text_widget.dart';
 
-class BagPage extends StatefulWidget {
-  BagPage({super.key});
+class BagPageWidget extends StatefulWidget {
+  const BagPageWidget({super.key});
 
   @override
-  State<BagPage> createState() => _BagPageState();
+  State<BagPageWidget> createState() => _BagPageWidgetState();
 }
 
-class _BagPageState extends State<BagPage> {
-  List<String> insideBagItems = [
-    'item1',
-    'item2',
-    'item3',
-    'item2',
-    'item3',
-    'item2',
-    'item3',
-    'item2',
-    'item3',
-    'item2',
-    'item3'
-  ];
-
-  void incrementItem(int count) {
-    print('Incremented item count to: $count');
-  }
-
-  void deleteItem(int index) {
-    setState(() {
-      insideBagItems.removeAt(index);
-    });
-  }
+class _BagPageWidgetState extends State<BagPageWidget> {
+  final phoneNameController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -77,31 +54,31 @@ class _BagPageState extends State<BagPage> {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(
-                    top: 60.0,
-                    bottom: 200,
-                  ),
-                  child: CustomScrollView(
-                    slivers: [
-                      SliverList(
-                        delegate: SliverChildBuilderDelegate(
-                          (context, index) {
-                            return ObjectContainer(
-                              imageUrl:
-                                  'assets/product_photo/nike001.png', // Example image path
-                              title: insideBagItems[index],
-                              description:
-                                  'Description for ${insideBagItems[index]}',
-                              onDelete: () => deleteItem(index),
-                              onIncrement: (count) => incrementItem(count),
-                            );
-                          },
-                          childCount: insideBagItems.length,
+                    padding: const EdgeInsets.only(
+                      top: 60.0,
+                      bottom: 200,
+                    ),
+                    child: Container(
+                      decoration: const BoxDecoration(
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(10),
                         ),
                       ),
-                    ],
-                  ),
-                ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(10.0),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const MiddleTextWidget(widgetText: 'Name'),
+                            const SizedBox(height: 5),
+                            PhoneNumberTextField(
+                              phoneNumberController: phoneNameController,
+                            )
+                          ],
+                        ),
+                      ),
+                    )),
                 Positioned(
                   left: 0,
                   right: 0,
@@ -144,13 +121,7 @@ class _BagPageState extends State<BagPage> {
                         ),
                         const SizedBox(height: 10.0),
                         ElevatedButton(
-                          onPressed: () {
-                            Navigator.of(context).push(
-                              MaterialPageRoute(
-                                builder: (context) => const BagPageWidget(),
-                              ),
-                            );
-                          },
+                          onPressed: () {},
                           child: SizedBox(
                             width: ScreenUtil.setWidth(context, 0.7),
                             height: 40,

@@ -69,9 +69,9 @@ class _MainPageContollerState extends State<MainPageContoller> {
       case 0:
         return HomePage();
       case 1:
-        return const FavoritePage();
+        return FavoritePage();
       case 2:
-        return const BagPage();
+        return BagPage();
       case 3:
         return const SearchPage();
       case 4:

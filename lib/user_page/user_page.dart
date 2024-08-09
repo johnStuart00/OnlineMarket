@@ -80,6 +80,7 @@ class _UserPageState extends State<UserPage> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        backgroundColor: const Color.fromRGBO(245, 245, 245, 1),
         body: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
           const SizedBox(height: 20),
           const Text('Profile'),

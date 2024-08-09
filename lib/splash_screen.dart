@@ -24,19 +24,15 @@ class SplashWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        body: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            LottieBuilder.asset(
-              'assets/lottie/Animation001.json',
-              height: 200,
-            ),
-          ],
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        LottieBuilder.asset(
+          'assets/lottie/Animation001.json',
+          height: 200,
         ),
-      ),
+      ],
     );
   }
 }

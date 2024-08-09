@@ -1,6 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:online_market/utils/screen_size.dart';
 import 'package:online_market/widgets/brend_container_widget.dart';
 import 'package:online_market/widgets/category_container_widget.dart';
@@ -32,6 +30,7 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        backgroundColor: const Color.fromRGBO(245, 245, 245, 1),
         body: CustomScrollView(
           slivers: [
             SliverPadding(
@@ -142,11 +141,11 @@ class HomePage extends StatelessWidget {
                             onTap: () {
                               Navigator.of(context).push(
                                 MaterialPageRoute(
-                                  builder: (context) => FavoriteWidget(),
+                                  builder: (context) => const FavoriteWidget(),
                                 ),
                               );
                             },
-                            child: ProductContainerWidget(),
+                            child: const ProductContainerWidget(),
                           ),
                         );
                       },
@@ -177,16 +176,16 @@ class HomePage extends StatelessWidget {
                 delegate: SliverChildBuilderDelegate(
                   (BuildContext context, int index) {
                     return Padding(
-                      padding: EdgeInsets.all(5.0),
+                      padding: const EdgeInsets.all(5.0),
                       child: GestureDetector(
                           onTap: () {
                             Navigator.of(context).push(
                               MaterialPageRoute(
-                                builder: (context) => FavoriteWidget(),
+                                builder: (context) => const FavoriteWidget(),
                               ),
                             );
                           },
-                          child: ProductContainerWidget()),
+                          child: const ProductContainerWidget()),
                     );
                   },
                   childCount: 10,

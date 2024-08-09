@@ -36,45 +36,51 @@ class _FavoriteWidgetState extends State<FavoriteWidget> {
         backgroundColor: const Color.fromRGBO(245, 245, 245, 1),
         body: Stack(
           children: [
+            Positioned(
+              top: 0,
+              left: 0,
+              right: 0,
+              child: Padding(
+                padding:
+                    const EdgeInsets.only(right: 10.0, top: 10.0, left: 10.0),
+                child: SizedBox(
+                  height: 40,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Container(
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(30),
+                        ),
+                        child: IconButton(
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
+                          icon: const Icon(Icons.keyboard_arrow_left_rounded),
+                        ),
+                      ),
+                      const MiddleTextWidget(widgetText: 'Sneaker Shop'),
+                      Container(
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(30),
+                        ),
+                        child: IconButton(
+                          onPressed: () {},
+                          icon: const Icon(Icons.shopping_bag_rounded),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
             Padding(
               padding:
-                  const EdgeInsets.only(left: 10.0, top: 10.0, right: 10.0),
+                  const EdgeInsets.only(left: 10.0, top: 60.0, right: 10.0),
               child: CustomScrollView(
                 slivers: [
-                  SliverToBoxAdapter(
-                    child: SizedBox(
-                      height: 40,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Container(
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(30),
-                            ),
-                            child: IconButton(
-                              onPressed: () {
-                                Navigator.pop(context);
-                              },
-                              icon:
-                                  const Icon(Icons.keyboard_arrow_left_rounded),
-                            ),
-                          ),
-                          const MiddleTextWidget(widgetText: 'Sneaker Shop'),
-                          Container(
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(30),
-                            ),
-                            child: IconButton(
-                              onPressed: () {},
-                              icon: const Icon(Icons.shopping_bag_rounded),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
                   const SliverToBoxAdapter(child: SizedBox(height: 10.0)),
                   SliverToBoxAdapter(
                     child: Container(
@@ -152,6 +158,7 @@ class _FavoriteWidgetState extends State<FavoriteWidget> {
                       ),
                     ),
                   ),
+                  const SliverToBoxAdapter(child: SizedBox(height: 350)),
                 ],
               ),
             ),
@@ -159,9 +166,14 @@ class _FavoriteWidgetState extends State<FavoriteWidget> {
               bottom: 0,
               left: 0,
               right: 0,
-              child: SizedBox(
+              child: Container(
                 height: 125,
                 width: ScreenUtil.screenWidth(context),
+                decoration: const BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(10),
+                        topRight: Radius.circular(10))),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
@@ -169,7 +181,7 @@ class _FavoriteWidgetState extends State<FavoriteWidget> {
                       height: 50,
                       width: 50,
                       decoration: BoxDecoration(
-                        color: Colors.white,
+                        color: const Color.fromRGBO(245, 245, 245, 1),
                         borderRadius: BorderRadius.circular(30),
                       ),
                       child: IconButton(
@@ -190,7 +202,7 @@ class _FavoriteWidgetState extends State<FavoriteWidget> {
                     Container(
                       height: 50,
                       decoration: const BoxDecoration(
-                        color: Colors.white,
+                        color: Color.fromRGBO(245, 245, 245, 1),
                         borderRadius: BorderRadius.all(Radius.circular(10)),
                       ),
                       child: const Padding(
