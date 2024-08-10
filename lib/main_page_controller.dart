@@ -73,7 +73,7 @@ class _MainPageContollerState extends State<MainPageContoller> {
       case 2:
         return const BagPage();
       case 3:
-        return const SearchPage();
+        return SearchPage();
       case 4:
         return const UserPage();
       default:

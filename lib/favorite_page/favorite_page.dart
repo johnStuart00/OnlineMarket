@@ -33,19 +33,19 @@ class FavoritePage extends StatelessWidget {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Container(
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(30),
-                          ),
-                          child: IconButton(
-                            onPressed: () {
-                              Navigator.pop(context);
-                            },
-                            icon: const Icon(Icons.keyboard_arrow_left_rounded),
-                          ),
-                        ),
-                        const MiddleTextWidget(widgetText: 'Sneaker Shop'),
+                        // Container(
+                        //   decoration: BoxDecoration(
+                        //     color: Colors.white,
+                        //     borderRadius: BorderRadius.circular(30),
+                        //   ),
+                        //   child: IconButton(
+                        //     onPressed: () {
+                        //       Navigator.pop(context);
+                        //     },
+                        //     icon: const Icon(Icons.keyboard_arrow_left_rounded),
+                        //   ),
+                        // ),
+                        const MiddleTextWidget(widgetText: 'Favorites'),
                         Container(
                           decoration: BoxDecoration(
                             color: Colors.white,

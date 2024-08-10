@@ -52,24 +52,19 @@ class _BagPageState extends State<BagPage> {
                   child: SizedBox(
                     height: 40,
                     child: Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
+                        const MiddleTextWidget(widgetText: 'My Bag'),
                         Container(
                           decoration: BoxDecoration(
                             color: Colors.white,
                             borderRadius: BorderRadius.circular(30),
                           ),
                           child: IconButton(
-                            onPressed: () {
-                              Navigator.pop(context);
-                            },
-                            icon: const Icon(Icons.keyboard_arrow_left_rounded),
+                            onPressed: () {},
+                            icon: const Icon(Icons.favorite_border),
                           ),
                         ),
-                        const Expanded(
-                            child: Center(
-                                child: MiddleTextWidget(
-                                    widgetText: 'Sneaker Shop'))),
                       ],
                     ),
                   ),

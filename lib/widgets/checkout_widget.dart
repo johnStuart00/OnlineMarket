@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 import 'package:online_market/utils/screen_size.dart';
 import 'package:online_market/widgets/name_textfield_widget.dart';
 import 'package:online_market/widgets/phone_number_widget.dart';
@@ -146,7 +147,49 @@ class _BagPageWidgetState extends State<BagPageWidget> {
                         ),
                         const SizedBox(height: 10.0),
                         ElevatedButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            if (nameTextFieldController.text.isNotEmpty &&
+                                phoneNumberTextFieldController
+                                    .text.isNotEmpty) {
+                              showDialog(
+                                context: context,
+                                builder: (BuildContext context) {
+                                  return AlertDialog(
+                                    title: const Text('Congratulations!'),
+                                    content: SizedBox(
+                                      height: 200,
+                                      child: Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
+                                        children: [
+                                          LottieBuilder.asset(
+                                            'assets/lottie/congratulation.json',
+                                            height: 150,
+                                            width: 100,
+                                          ),
+                                          const SizedBox(height: 10),
+                                          const Text(
+                                            'Thank you for shopping with us! Your order has been placed successfully.',
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                    actions: [
+                                      TextButton(
+                                        onPressed: () {
+                                          Navigator.of(context)
+                                              .pop(); // Close the dialog
+                                        },
+                                        child: const Text('Close'),
+                                      ),
+                                    ],
+                                  );
+                                },
+                              );
+                            }
+                          },
                           child: SizedBox(
                             width: ScreenUtil.setWidth(context, 0.7),
                             height: 40,
