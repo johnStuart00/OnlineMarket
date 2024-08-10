@@ -14,7 +14,7 @@ class SplashScreen extends StatelessWidget {
     return AnimatedSplashScreen(
       splash: const SplashWidget(),
       nextScreen: const MainPageContoller(),
-      animationDuration: const Duration(seconds: 10),
+      animationDuration: const Duration(seconds: 5),
       splashIconSize: ScreenUtil.screenHeight(context),
       backgroundColor: Colors.white,
     );
