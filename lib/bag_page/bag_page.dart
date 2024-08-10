@@ -7,7 +7,7 @@ import 'package:online_market/widgets/text_widgets/marker_text_widget.dart';
 import 'package:online_market/widgets/text_widgets/middle_text_widget.dart';
 
 class BagPage extends StatefulWidget {
-  BagPage({super.key});
+  const BagPage({super.key});
 
   @override
   State<BagPage> createState() => _BagPageState();
@@ -28,9 +28,7 @@ class _BagPageState extends State<BagPage> {
     'item3'
   ];
 
-  void incrementItem(int count) {
-    print('Incremented item count to: $count');
-  }
+  void incrementItem(int count) {}
 
   void deleteItem(int index) {
     setState(() {

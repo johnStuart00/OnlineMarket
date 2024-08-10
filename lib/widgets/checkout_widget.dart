@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:online_market/utils/screen_size.dart';
+import 'package:online_market/widgets/name_textfield_widget.dart';
 import 'package:online_market/widgets/phone_number_widget.dart';
 import 'package:online_market/widgets/text_widgets/large_text_widget.dart';
 import 'package:online_market/widgets/text_widgets/marker_text_widget.dart';
@@ -13,7 +14,10 @@ class BagPageWidget extends StatefulWidget {
 }
 
 class _BagPageWidgetState extends State<BagPageWidget> {
-  final phoneNameController = TextEditingController();
+  final nameTextFieldController = TextEditingController();
+  final phoneNumberTextFieldController = TextEditingController();
+  final addressTextFieldController = TextEditingController();
+  final promoCodeTextFieldController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +27,7 @@ class _BagPageWidgetState extends State<BagPageWidget> {
         body: Padding(
             padding: const EdgeInsets.only(left: 10.0, top: 10.0, right: 10.0),
             child: Stack(
-              children: [
+              children: <Widget>[
                 Positioned(
                   top: 0,
                   left: 0,
@@ -72,9 +76,30 @@ class _BagPageWidgetState extends State<BagPageWidget> {
                           children: [
                             const MiddleTextWidget(widgetText: 'Name'),
                             const SizedBox(height: 5),
+                            NameTextField(
+                              textFieldNameController: nameTextFieldController,
+                            ),
+                            const SizedBox(height: 5),
+                            const MiddleTextWidget(widgetText: 'Phone Number'),
+                            const SizedBox(height: 5),
                             PhoneNumberTextField(
-                              phoneNumberController: phoneNameController,
-                            )
+                              phoneNumberController:
+                                  phoneNumberTextFieldController,
+                            ),
+                            const SizedBox(height: 5),
+                            const MiddleTextWidget(widgetText: 'Address'),
+                            const SizedBox(height: 5),
+                            NameTextField(
+                              textFieldNameController:
+                                  addressTextFieldController,
+                            ),
+                            const SizedBox(height: 5),
+                            const MiddleTextWidget(widgetText: 'Promo Code'),
+                            const SizedBox(height: 5),
+                            NameTextField(
+                              textFieldNameController:
+                                  promoCodeTextFieldController,
+                            ),
                           ],
                         ),
                       ),

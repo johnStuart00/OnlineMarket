@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:adaptive_theme/adaptive_theme.dart';
-import 'package:online_market/bag_page/bag_page.dart';
 import 'package:online_market/splash_screen.dart';
 
 void main() async {

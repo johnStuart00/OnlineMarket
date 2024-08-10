@@ -11,7 +11,7 @@ class ErrorPage extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Lottie.asset('assets/lottie/Animation002.json'),
+            Lottie.asset('assets/lottie/error_lottie.json'),
             const SizedBox(height: 15),
             const Text(
               'Serwere baglanyp bilmedi. \nInternetiňizi barlaň!',

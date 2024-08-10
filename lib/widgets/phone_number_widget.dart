@@ -22,7 +22,6 @@ class _PhoneNumberTextFieldState extends State<PhoneNumberTextField> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 300,
       child: TextField(
         controller: widget.phoneNumberController,
         keyboardType: TextInputType.phone,
@@ -33,9 +32,8 @@ class _PhoneNumberTextFieldState extends State<PhoneNumberTextField> {
         ],
         decoration: InputDecoration(
           border: const OutlineInputBorder(),
-          labelText: 'Telefon belgi',
           prefix: const Text('+993 '),
-          //hintText: '+993 -- -- -- -- --',
+          //hintText: '-- -- -- --',
           suffix: GestureDetector(
             onTap: textFieldClear,
             child: const Icon(Icons.clear_rounded),
@@ -53,7 +51,7 @@ class _PhoneNumberFormatter extends TextInputFormatter {
     var newText = newValue.text;
 
     if (newText.length > 2 && !newText.contains(' ')) {
-      newText = newText.substring(0, 2) + ' ' + newText.substring(2);
+      newText = '${newText.substring(0, 2)} ${newText.substring(2)}';
     }
 
     return newValue.copyWith(
