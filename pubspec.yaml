@@ -29,6 +29,12 @@ dependencies:
   shared_preferences: ^2.3.1
   google_fonts: ^6.2.1
   flutter_svg: ^2.0.10+1
+  flutter_launcher_icons: ^0.13.1
+
+flutter_launcher_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/project_logo/han_moda_app.png"
 
 
 dev_dependencies:
