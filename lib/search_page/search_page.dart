@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:online_market/utils/screen_size.dart';
 import 'package:online_market/widgets/category_container_widget.dart';
 import 'package:online_market/widgets/closes_by_category_widget.dart';
 import 'package:online_market/widgets/closes_category_widget.dart';
