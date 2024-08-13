@@ -52,17 +52,17 @@ class _BagPageWidgetState extends State<BagPageWidget> {
                         ),
                         const Expanded(
                             child: Center(
-                                child: MiddleTextWidget(
-                                    widgetText: 'Sneaker Shop'))),
+                                child: MiddleTextWidget(widgetText: 'My Bag'))),
                       ],
                     ),
                   ),
                 ),
                 Padding(
-                    padding: const EdgeInsets.only(
-                      top: 60.0,
-                      bottom: 200,
-                    ),
+                  padding: const EdgeInsets.only(
+                    top: 60.0,
+                    bottom: 200,
+                  ),
+                  child: SingleChildScrollView(
                     child: Container(
                       decoration: const BoxDecoration(
                         borderRadius: BorderRadius.all(
@@ -104,7 +104,9 @@ class _BagPageWidgetState extends State<BagPageWidget> {
                           ],
                         ),
                       ),
-                    )),
+                    ),
+                  ),
+                ),
                 Positioned(
                   left: 0,
                   right: 0,

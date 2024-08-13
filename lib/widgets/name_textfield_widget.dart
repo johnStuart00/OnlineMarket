@@ -24,7 +24,7 @@ class _NameTextFieldState extends State<NameTextField> {
     return SizedBox(
       child: TextField(
         controller: widget.textFieldNameController,
-        keyboardType: TextInputType.phone,
+        keyboardType: TextInputType.text,
         inputFormatters: [
           LengthLimitingTextInputFormatter(50),
           FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z0-9\s]')),
