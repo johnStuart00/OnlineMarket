@@ -12,7 +12,7 @@ class UserPage extends StatefulWidget {
 }
 
 class _UserPageState extends State<UserPage> {
-  late List<Section> _sections;
+  late List<Section> _sections = [];
   //late ThemeMode _themeMode;
 
   @override

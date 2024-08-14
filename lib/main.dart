@@ -2,9 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:online_market/splash_screen.dart';
 
+import 'core/network/di/app_injections.dart';
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   final savedThemeMode = await AdaptiveTheme.getThemeMode();
+  await AppInjections.registerInjections();
   runApp(
     MaterialApp(
       debugShowCheckedModeBanner: false,
