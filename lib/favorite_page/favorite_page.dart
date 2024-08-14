@@ -12,7 +12,6 @@ class FavoritePage extends StatelessWidget {
     'assets/product_photo/nike002.png',
     'assets/product_photo/nike003.png',
     'assets/product_photo/nike004.png',
-    // Add more items as needed
   ];
 
   @override
@@ -24,26 +23,16 @@ class FavoritePage extends StatelessWidget {
             padding: const EdgeInsets.only(left: 10.0, top: 10.0, right: 10.0),
             child: Stack(
               children: [
-                Positioned(
+                const Positioned(
                   top: 0,
                   left: 0,
                   right: 0,
                   child: SizedBox(
                     height: 40,
                     child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        const MiddleTextWidget(widgetText: 'Favorites'),
-                        Container(
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(30),
-                          ),
-                          child: IconButton(
-                            onPressed: () {},
-                            icon: const Icon(Icons.shopping_bag_rounded),
-                          ),
-                        ),
+                        MiddleTextWidget(widgetText: 'Favorites'),
                       ],
                     ),
                   ),

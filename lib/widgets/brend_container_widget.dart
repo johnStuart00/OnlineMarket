@@ -12,20 +12,12 @@ class BrendWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: Container(
-        width: ScreenUtil.setWidth(context, 0.2), //20% of the screen
-        height: ScreenUtil.setHeight(context, 0.2), // 20% of the screen
+        width: ScreenUtil.setWidth(context, 0.2),
         padding: const EdgeInsets.only(right: 10.0, left: 10.0),
         decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(10),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.grey.withOpacity(0.5),
-                spreadRadius: 1,
-                blurRadius: 2,
-                offset: const Offset(2, 2),
-              ),
-            ]),
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(10),
+        ),
         child: brendImage,
       ),
     );

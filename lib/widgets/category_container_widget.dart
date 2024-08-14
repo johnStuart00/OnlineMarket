@@ -27,19 +27,11 @@ class _CategoryWidgetState extends State<CategoryWidget> {
     return GestureDetector(
       //onTap: _toggleSelection,
       child: Container(
-        width: ScreenUtil.setWidth(context, 0.2), // 20% of the screen
-        height: ScreenUtil.setHeight(context, 0.2), // 20% of the screen
+        width: ScreenUtil.setWidth(context, 0.2),
+        height: ScreenUtil.setHeight(context, 0.2),
         decoration: BoxDecoration(
           color: isSelected ? Colors.blue : Colors.white,
           borderRadius: BorderRadius.circular(10),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.grey.withOpacity(0.5),
-              spreadRadius: 1,
-              blurRadius: 2,
-              offset: const Offset(2, 2),
-            ),
-          ],
         ),
         child: Center(
           child: Text(

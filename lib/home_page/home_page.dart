@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get_it/get_it.dart';
 import 'package:mobx/mobx.dart';
 import 'package:online_market/data/banner_repository/controller/brends_controller.dart';
+import 'package:online_market/utils/screen_size.dart';
 
 import 'package:online_market/widgets/brend_container_widget.dart';
 import 'package:online_market/widgets/category_container_widget.dart';
+import 'package:online_market/widgets/closes_by_category_widget.dart';
 import 'package:online_market/widgets/favorite_widget.dart';
 import 'package:online_market/widgets/see_all_brends_widget.dart';
 import 'package:online_market/widgets/subcategory_by_category_widget.dart';
@@ -165,13 +168,23 @@ class _HomePageState extends State<HomePage> {
                       }
                     }),
                   ),
-                  const Padding(
+                  Padding(
                     padding: EdgeInsets.all(8.0),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        MiddleTextWidget(widgetText: 'Popular products'),
-                        MarkerTextWidget(widgetText: 'See all')
+                        const MiddleTextWidget(widgetText: 'Popular products'),
+                        GestureDetector(
+                            onTap: () {
+                              Navigator.of(context).push(
+                                MaterialPageRoute(
+                                  builder: (context) =>
+                                      const ClosesByCategoryWidget(),
+                                ),
+                              );
+                            },
+                            child:
+                                const MarkerTextWidget(widgetText: 'See all'))
                       ],
                     ),
                   ),
@@ -200,13 +213,23 @@ class _HomePageState extends State<HomePage> {
                       },
                     ),
                   ),
-                  const Padding(
+                  Padding(
                     padding: EdgeInsets.all(8.0),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        MiddleTextWidget(widgetText: 'New Arrivals'),
-                        MarkerTextWidget(widgetText: 'See all')
+                        const MiddleTextWidget(widgetText: 'New Arrivals'),
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.of(context).push(
+                              MaterialPageRoute(
+                                builder: (context) =>
+                                    const ClosesByCategoryWidget(),
+                              ),
+                            );
+                          },
+                          child: const MarkerTextWidget(widgetText: 'See all'),
+                        )
                       ],
                     ),
                   ),
@@ -219,7 +242,7 @@ class _HomePageState extends State<HomePage> {
                 gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
                   crossAxisSpacing: 10.0,
                   mainAxisSpacing: 10.0,
-                  // childAspectRatio: (ScreenUtil.screenWidth(context) / 2) / 300,
+                  childAspectRatio: (ScreenUtil.screenWidth(context) / 2) / 300,
                   maxCrossAxisExtent: 300,
                 ),
                 delegate: SliverChildBuilderDelegate(
