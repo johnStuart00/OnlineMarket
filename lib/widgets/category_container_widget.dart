@@ -25,7 +25,7 @@ class _CategoryWidgetState extends State<CategoryWidget> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: _toggleSelection,
+      //onTap: _toggleSelection,
       child: Container(
         width: ScreenUtil.setWidth(context, 0.2), // 20% of the screen
         height: ScreenUtil.setHeight(context, 0.2), // 20% of the screen

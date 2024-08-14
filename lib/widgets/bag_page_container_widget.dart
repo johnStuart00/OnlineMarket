@@ -36,14 +36,6 @@ class _ObjectContainerState extends State<ObjectContainer> {
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(10.0),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.grey.withOpacity(0.5),
-              spreadRadius: 2,
-              blurRadius: 5,
-              offset: const Offset(1, 2),
-            ),
-          ],
         ),
         child: Row(
           children: [

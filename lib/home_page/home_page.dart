@@ -3,19 +3,19 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get_it/get_it.dart';
 import 'package:mobx/mobx.dart';
 import 'package:online_market/data/banner_repository/controller/brends_controller.dart';
-import 'package:online_market/utils/screen_size.dart';
+
 import 'package:online_market/widgets/brend_container_widget.dart';
 import 'package:online_market/widgets/category_container_widget.dart';
 import 'package:online_market/widgets/favorite_widget.dart';
+import 'package:online_market/widgets/see_all_brends_widget.dart';
+import 'package:online_market/widgets/subcategory_by_category_widget.dart';
 import 'package:online_market/widgets/text_widgets/large_text_widget.dart';
 import 'package:online_market/widgets/product_container_widget.dart';
 import 'package:online_market/widgets/text_widgets/marker_text_widget.dart';
 import 'package:online_market/widgets/text_widgets/middle_text_widget.dart';
 
-import '../data/banner_repository/controller/brends_controller.dart';
-
 class HomePage extends StatefulWidget {
-  HomePage({super.key});
+  const HomePage({super.key});
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -46,31 +46,31 @@ class _HomePageState extends State<HomePage> {
               padding: const EdgeInsets.only(left: 10.0),
               sliver: SliverList(
                 delegate: SliverChildListDelegate([
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
+                  const Padding(
+                    padding: EdgeInsets.all(8.0),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const SizedBox(height: 5),
+                        SizedBox(height: 5),
                         Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          mainAxisAlignment: MainAxisAlignment.start,
                           children: [
-                            const LargeTextWidget(
+                            LargeTextWidget(
                               widgetText: 'Explore',
                             ),
-                            Container(
-                              decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(30),
-                              ),
-                              child: IconButton(
-                                  onPressed: () {},
-                                  icon: const Icon(Icons.shopping_bag_rounded)),
-                            )
+                            // Container(
+                            //   decoration: BoxDecoration(
+                            //     color: Colors.white,
+                            //     borderRadius: BorderRadius.circular(30),
+                            //   ),
+                            //   child: IconButton(
+                            //       onPressed: () {},
+                            //       icon: const Icon(Icons.shopping_bag_rounded)),
+                            // )
                           ],
                         ),
-                        const SizedBox(height: 5),
-                        const MiddleTextWidget(
+                        SizedBox(height: 5),
+                        MiddleTextWidget(
                           widgetText: 'Select Category',
                         ),
                       ],
@@ -87,20 +87,39 @@ class _HomePageState extends State<HomePage> {
                             vertical: 5.0,
                             horizontal: 5.0,
                           ),
-                          child: CategoryWidget(
-                            categoryName: categoryNames[index],
+                          child: GestureDetector(
+                            onTap: () {
+                              Navigator.of(context).push(
+                                MaterialPageRoute(
+                                  builder: (context) =>
+                                      SubcategoryByCategoryWidget(),
+                                ),
+                              );
+                            },
+                            child: CategoryWidget(
+                              categoryName: categoryNames[index],
+                            ),
                           ),
                         );
                       },
                     ),
                   ),
-                  const Padding(
+                  Padding(
                     padding: EdgeInsets.all(8.0),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        MiddleTextWidget(widgetText: 'Brendler'),
-                        MarkerTextWidget(widgetText: 'See all')
+                        const MiddleTextWidget(widgetText: 'Brendler'),
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.of(context).push(
+                              MaterialPageRoute(
+                                builder: (context) => SeeAllBrendsWindget(),
+                              ),
+                            );
+                          },
+                          child: MarkerTextWidget(widgetText: 'See all'),
+                        )
                       ],
                     ),
                   ),
