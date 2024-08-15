@@ -9,6 +9,7 @@ import 'package:online_market/widgets/brend_container_widget.dart';
 import 'package:online_market/widgets/category_container_widget.dart';
 import 'package:online_market/widgets/closes_by_category_widget.dart';
 import 'package:online_market/widgets/favorite_widget.dart';
+import 'package:online_market/widgets/product_grid_widget.dart';
 import 'package:online_market/widgets/see_all_brends_widget.dart';
 import 'package:online_market/widgets/subcategory_by_category_widget.dart';
 import 'package:online_market/widgets/text_widgets/large_text_widget.dart';
@@ -190,28 +191,31 @@ class _HomePageState extends State<HomePage> {
                   ),
                   SizedBox(
                     height: 250,
-                    child: ListView.builder(
-                      scrollDirection: Axis.horizontal,
-                      itemCount: 10,
-                      itemBuilder: (BuildContext context, int index) {
-                        return Padding(
-                          padding: const EdgeInsets.symmetric(
-                            vertical: 5.0,
-                            horizontal: 5.0,
-                          ),
-                          child: GestureDetector(
-                            onTap: () {
-                              Navigator.of(context).push(
-                                MaterialPageRoute(
-                                  builder: (context) => const FavoriteWidget(),
-                                ),
-                              );
-                            },
-                            child: const ProductContainerWidget(),
-                          ),
-                        );
-                      },
-                    ),
+                    child: Observer(builder: (context) {
+                      return ListView.builder(
+                        scrollDirection: Axis.horizontal,
+                        itemCount: 10,
+                        itemBuilder: (BuildContext context, int index) {
+                          return Padding(
+                            padding: const EdgeInsets.symmetric(
+                              vertical: 5.0,
+                              horizontal: 5.0,
+                            ),
+                            child: GestureDetector(
+                              onTap: () {
+                                Navigator.of(context).push(
+                                  MaterialPageRoute(
+                                    builder: (context) =>
+                                        const FavoriteWidget(),
+                                  ),
+                                );
+                              },
+                              child: const ProductContainerWidget(),
+                            ),
+                          );
+                        },
+                      );
+                    }),
                   ),
                   Padding(
                     padding: const EdgeInsets.all(8.0),
@@ -239,11 +243,11 @@ class _HomePageState extends State<HomePage> {
             SliverPadding(
               padding: const EdgeInsets.all(8.0),
               sliver: SliverGrid(
-                gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisSpacing: 10.0,
                   mainAxisSpacing: 10.0,
-                  childAspectRatio: (ScreenUtil.screenWidth(context) / 2) / 300,
-                  maxCrossAxisExtent: 300,
+                  // childAspectRatio: (ScreenUtil.screenWidth(context) / 2) / 300,
+                  crossAxisCount: 2,
                 ),
                 delegate: SliverChildBuilderDelegate(
                   (BuildContext context, int index) {
@@ -255,7 +259,7 @@ class _HomePageState extends State<HomePage> {
                             ),
                           );
                         },
-                        child: const ProductContainerWidget());
+                        child: const ProductGridWidget());
                   },
                   childCount: 10,
                 ),
