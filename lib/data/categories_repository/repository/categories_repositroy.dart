@@ -1,21 +1,20 @@
 import 'dart:developer';
 
 import 'package:online_market/core/network/dio_helper.dart';
+import 'package:online_market/data/categories_repository/dto/Categories_dto.dart';
 
-import 'package:online_market/data/product_repository/dto/product_dto.dart';
-
-class ProductRepository {
+class CategoriesRepositroy {
   final _dio = DioHelper.instance;
 
-  Future<ProductDto> product_repository() async {
+  Future<CategoriesDto> categoriesrepository() async {
     try {
       final response = await _dio.get(
-        "products",
+        "categories",
       );
 
       Map<String, dynamic> data = response.data;
 
-      return ProductDto.fromJson(data);
+      return CategoriesDto.fromJson(data);
     } catch (e) {
       log(e.toString());
       throw Exception('Failed to fetch genres $e');

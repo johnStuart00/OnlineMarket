@@ -45,28 +45,3 @@ class OnlineMarket extends StatelessWidget {
     );
   }
 }
-
-
-
-
-
-//dark and light mode switcher
-// Row(
-//                 mainAxisSize: MainAxisSize.min,
-//                 children: [
-//                   const Text('Light'),
-//                   const SizedBox(width: 10),
-//                   Switch(
-//                     value: AdaptiveTheme.of(context).mode.isDark,
-//                     onChanged: (value) {
-//                       if (value) {
-//                         AdaptiveTheme.of(context).setDark();
-//                       } else {
-//                         AdaptiveTheme.of(context).setLight();
-//                       }
-//                     },
-//                   ),
-//                   const SizedBox(width: 10),
-//                   const Text('Dark'),
-//                 ],
-//               ),

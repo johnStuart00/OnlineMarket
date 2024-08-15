@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:online_market/home_page/models/productModel.dart';
 import 'package:online_market/widgets/text_widgets/marker_text_widget.dart';
 import 'package:online_market/widgets/text_widgets/middle_text_widget.dart';
 
 class ProductGridWidget extends StatefulWidget {
-  const ProductGridWidget({super.key});
+  ProductModel products;
+  ProductGridWidget({required this.products});
 
   @override
   State<ProductGridWidget> createState() => _ProductGridWidgetState();
@@ -28,12 +30,12 @@ class _ProductGridWidgetState extends State<ProductGridWidget> {
         children: [
           Expanded(
             child: Container(
-              decoration: const BoxDecoration(
+              decoration: BoxDecoration(
                 borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(10),
                     topRight: Radius.circular(10)),
                 image: DecorationImage(
-                    image: AssetImage('assets/product_photo/nike001.png'),
+                    image: NetworkImage(widget.products.img),
                     fit: BoxFit.cover),
               ),
               child: SizedBox(
@@ -70,16 +72,17 @@ class _ProductGridWidgetState extends State<ProductGridWidget> {
                 padding: EdgeInsets.only(left: 10.0),
                 child: MarkerTextWidget(widgetText: 'BEST SELLER'),
               ),
-              const Padding(
+              Padding(
                 padding: EdgeInsets.only(left: 10.0),
-                child: MiddleTextWidget(widgetText: 'Nike Jordan'),
+                child: MiddleTextWidget(widgetText: widget.products.name),
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const Padding(
+                  Padding(
                       padding: EdgeInsets.only(left: 10.0),
-                      child: MiddleTextWidget(widgetText: '\$302.00')),
+                      child: MiddleTextWidget(
+                          widgetText: '\$${widget.products.price}')),
                   Container(
                     decoration: BoxDecoration(
                       color: Theme.of(context).iconTheme.color,

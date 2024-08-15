@@ -3,6 +3,9 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get_it/get_it.dart';
 import 'package:mobx/mobx.dart';
 import 'package:online_market/data/banner_repository/controller/brends_controller.dart';
+import 'package:online_market/data/categories_repository/controller/categories_controller.dart';
+import 'package:online_market/data/product_repository/controller/product_controller.dart';
+import 'package:online_market/home_page/models/productModel.dart';
 import 'package:online_market/utils/screen_size.dart';
 
 import 'package:online_market/widgets/brend_container_widget.dart';
@@ -26,17 +29,16 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final brendcontroller = GetIt.instance<BrendsController>();
+  final productcontroller = GetIt.instance<ProductController>();
+  final cateogriescontroller = GetIt.instance<CategoriesController>();
   @override
   void initState() {
     // TODO: implement initState
+    productcontroller.fetchData();
     brendcontroller.fetchData();
+    cateogriescontroller.fetchData();
     super.initState();
   }
-
-  final List<String> categoryNames = [
-    'Ayal',
-    'Erkek',
-  ];
 
   @override
   Widget build(BuildContext context) {
@@ -81,31 +83,46 @@ class _HomePageState extends State<HomePage> {
                   ),
                   SizedBox(
                     height: 50,
-                    child: ListView.builder(
-                      scrollDirection: Axis.horizontal,
-                      itemCount: categoryNames.length,
-                      itemBuilder: (BuildContext context, int index) {
-                        return Padding(
-                          padding: const EdgeInsets.symmetric(
-                            vertical: 5.0,
-                            horizontal: 5.0,
-                          ),
-                          child: GestureDetector(
-                            onTap: () {
-                              Navigator.of(context).push(
-                                MaterialPageRoute(
-                                  builder: (context) =>
-                                      SubcategoryByCategoryWidget(),
+                    child: Observer(builder: (_) {
+                      if (cateogriescontroller.categories == null) {
+                        return Container();
+                      }
+                      switch (cateogriescontroller.categories!.status) {
+                        case FutureStatus.pending:
+                          return const CircularProgressIndicator();
+                        case FutureStatus.rejected:
+                          return Text(
+                              'Error: ${brendcontroller.brends_get!.error}');
+                        case FutureStatus.fulfilled:
+                          return ListView.builder(
+                            scrollDirection: Axis.horizontal,
+                            itemCount: cateogriescontroller
+                                .categories!.value!.data!.length,
+                            itemBuilder: (BuildContext context, int index) {
+                              return Padding(
+                                padding: const EdgeInsets.symmetric(
+                                  vertical: 5.0,
+                                  horizontal: 5.0,
+                                ),
+                                child: GestureDetector(
+                                  onTap: () {
+                                    Navigator.of(context).push(
+                                      MaterialPageRoute(
+                                        builder: (context) =>
+                                            SubcategoryByCategoryWidget(),
+                                      ),
+                                    );
+                                  },
+                                  child: CategoryWidget(
+                                    categoryName: cateogriescontroller
+                                        .categories!.value!.data![index].name!,
+                                  ),
                                 ),
                               );
                             },
-                            child: CategoryWidget(
-                              categoryName: categoryNames[index],
-                            ),
-                          ),
-                        );
-                      },
-                    ),
+                          );
+                      }
+                    }),
                   ),
                   Padding(
                     padding: const EdgeInsets.all(8.0),
@@ -191,30 +208,49 @@ class _HomePageState extends State<HomePage> {
                   ),
                   SizedBox(
                     height: 250,
-                    child: Observer(builder: (context) {
-                      return ListView.builder(
-                        scrollDirection: Axis.horizontal,
-                        itemCount: 10,
-                        itemBuilder: (BuildContext context, int index) {
-                          return Padding(
-                            padding: const EdgeInsets.symmetric(
-                              vertical: 5.0,
-                              horizontal: 5.0,
-                            ),
-                            child: GestureDetector(
-                              onTap: () {
-                                Navigator.of(context).push(
-                                  MaterialPageRoute(
-                                    builder: (context) =>
-                                        const FavoriteWidget(),
+                    child: Observer(builder: (_) {
+                      if (productcontroller.product_controller == null) {
+                        return Container();
+                      }
+                      switch (productcontroller.product_controller!.status) {
+                        case FutureStatus.pending:
+                          return CircularProgressIndicator();
+                        case FutureStatus.rejected:
+                          return Text("Error");
+                        case FutureStatus.fulfilled:
+                          return ListView.builder(
+                            scrollDirection: Axis.horizontal,
+                            itemCount: productcontroller
+                                .product_controller!.value!.data!.length,
+                            itemBuilder: (BuildContext context, int index) {
+                              var pro = productcontroller
+                                  .product_controller!.value!.data![index];
+                              return Padding(
+                                padding: const EdgeInsets.symmetric(
+                                  vertical: 5.0,
+                                  horizontal: 5.0,
+                                ),
+                                child: GestureDetector(
+                                  onTap: () {
+                                    Navigator.of(context).push(
+                                      MaterialPageRoute(
+                                        builder: (context) =>
+                                            const FavoriteWidget(),
+                                      ),
+                                    );
+                                  },
+                                  child: ProductContainerWidget(
+                                    productModel: ProductModel(
+                                        img:
+                                            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTBbmndaKuy8w2TPeq2mCtia2PIxHYuV4uCng&s",
+                                        name: pro.name!,
+                                        price: pro.price!.toDouble()),
                                   ),
-                                );
-                              },
-                              child: const ProductContainerWidget(),
-                            ),
+                                ),
+                              );
+                            },
                           );
-                        },
-                      );
+                      }
                     }),
                   ),
                   Padding(
@@ -240,31 +276,55 @@ class _HomePageState extends State<HomePage> {
                 ]),
               ),
             ),
-            SliverPadding(
-              padding: const EdgeInsets.all(8.0),
-              sliver: SliverGrid(
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisSpacing: 10.0,
-                  mainAxisSpacing: 10.0,
-                  // childAspectRatio: (ScreenUtil.screenWidth(context) / 2) / 300,
-                  crossAxisCount: 2,
-                ),
-                delegate: SliverChildBuilderDelegate(
-                  (BuildContext context, int index) {
-                    return GestureDetector(
-                        onTap: () {
-                          Navigator.of(context).push(
-                            MaterialPageRoute(
-                              builder: (context) => const FavoriteWidget(),
-                            ),
-                          );
+            Observer(builder: (_) {
+              if (productcontroller.product_controller == null) {
+                return Container();
+              }
+              switch (productcontroller.product_controller!.status) {
+                case FutureStatus.pending:
+                  return SliverFillRemaining(
+                    child: CircularProgressIndicator(),
+                  );
+                case FutureStatus.rejected:
+                  return SliverFillRemaining(child: Text("error"));
+                case FutureStatus.fulfilled:
+                  return SliverPadding(
+                    padding: const EdgeInsets.all(8.0),
+                    sliver: SliverGrid(
+                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisSpacing: 10.0,
+                        mainAxisSpacing: 10.0,
+                        childAspectRatio: 0.8,
+                        crossAxisCount: 2,
+                      ),
+                      delegate: SliverChildBuilderDelegate(
+                        (BuildContext context, int index) {
+                          var pro = productcontroller
+                              .product_controller!.value!.data![index];
+                          return GestureDetector(
+                              onTap: () {
+                                Navigator.of(context).push(
+                                  MaterialPageRoute(
+                                    builder: (context) =>
+                                        const FavoriteWidget(),
+                                  ),
+                                );
+                              },
+                              child: ProductGridWidget(
+                                products: ProductModel(
+                                    img:
+                                        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTBbmndaKuy8w2TPeq2mCtia2PIxHYuV4uCng&s",
+                                    name: pro.name!,
+                                    price: pro.price!.toDouble()),
+                              ));
                         },
-                        child: const ProductGridWidget());
-                  },
-                  childCount: 10,
-                ),
-              ),
-            ),
+                        childCount: productcontroller
+                            .product_controller!.value!.data!.length,
+                      ),
+                    ),
+                  );
+              }
+            }),
           ],
         ),
       ),

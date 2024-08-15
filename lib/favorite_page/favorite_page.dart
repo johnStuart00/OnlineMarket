@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:online_market/home_page/models/productModel.dart';
 import 'package:online_market/utils/screen_size.dart';
 import 'package:online_market/widgets/favorite_widget.dart';
 import 'package:online_market/widgets/product_container_widget.dart';
@@ -64,7 +65,13 @@ class FavoritePage extends StatelessWidget {
                                       ),
                                     );
                                   },
-                                  child: const ProductContainerWidget()),
+                                  child: ProductContainerWidget(
+                                    productModel: ProductModel(
+                                        img:
+                                            "https://static.vecteezy.com/system/resources/previews/008/619/502/non_2x/bag-yellow-orange-red-white-color-golden-background-wallpaper-copy-space-decoration-ornament-business-shopping-friday-sale-store-retail-product-special-surprise-commercial-discount-consumer-3d-render-photo.jpg",
+                                        name: "name",
+                                        price: 123),
+                                  )),
                             );
                           },
                           childCount: favoriteItems.length,
