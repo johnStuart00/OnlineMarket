@@ -11,7 +11,7 @@ class ClosesByCategoryWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: const Color.fromRGBO(245, 245, 245, 1),
+        backgroundColor: Theme.of(context).primaryColor,
         body: Stack(
           children: [
             Positioned(
@@ -27,7 +27,7 @@ class ClosesByCategoryWidget extends StatelessWidget {
                     children: [
                       Container(
                         decoration: BoxDecoration(
-                          color: Colors.white,
+                          color: Theme.of(context).cardColor,
                           borderRadius: BorderRadius.circular(30),
                         ),
                         child: IconButton(

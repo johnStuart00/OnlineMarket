@@ -18,7 +18,7 @@ class FavoritePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: const Color.fromRGBO(245, 245, 245, 1),
+        backgroundColor: Theme.of(context).primaryColor,
         body: Padding(
             padding: const EdgeInsets.only(left: 10.0, top: 10.0, right: 10.0),
             child: Stack(

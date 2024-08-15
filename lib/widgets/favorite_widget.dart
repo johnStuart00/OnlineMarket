@@ -33,7 +33,7 @@ class _FavoriteWidgetState extends State<FavoriteWidget> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: const Color.fromRGBO(245, 245, 245, 1),
+        backgroundColor: Theme.of(context).primaryColor,
         body: Stack(
           children: [
             Positioned(
@@ -50,7 +50,7 @@ class _FavoriteWidgetState extends State<FavoriteWidget> {
                     children: [
                       Container(
                         decoration: BoxDecoration(
-                          color: Colors.white,
+                          color: Theme.of(context).cardColor,
                           borderRadius: BorderRadius.circular(30),
                         ),
                         child: IconButton(
@@ -63,7 +63,7 @@ class _FavoriteWidgetState extends State<FavoriteWidget> {
                       const MiddleTextWidget(widgetText: 'Sneaker Shop'),
                       Container(
                         decoration: BoxDecoration(
-                          color: Colors.white,
+                          color: Theme.of(context).cardColor,
                           borderRadius: BorderRadius.circular(30),
                         ),
                         child: IconButton(
@@ -169,9 +169,9 @@ class _FavoriteWidgetState extends State<FavoriteWidget> {
               child: Container(
                 height: 125,
                 width: ScreenUtil.screenWidth(context),
-                decoration: const BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.only(
+                decoration: BoxDecoration(
+                    color: Theme.of(context).cardColor,
+                    borderRadius: const BorderRadius.only(
                         topLeft: Radius.circular(10),
                         topRight: Radius.circular(10))),
                 child: Row(
@@ -181,7 +181,7 @@ class _FavoriteWidgetState extends State<FavoriteWidget> {
                       height: 50,
                       width: 50,
                       decoration: BoxDecoration(
-                        color: const Color.fromRGBO(245, 245, 245, 1),
+                        color: Theme.of(context).cardColor,
                         borderRadius: BorderRadius.circular(30),
                       ),
                       child: IconButton(
@@ -201,9 +201,10 @@ class _FavoriteWidgetState extends State<FavoriteWidget> {
                     ),
                     Container(
                       height: 50,
-                      decoration: const BoxDecoration(
-                        color: Color.fromRGBO(245, 245, 245, 1),
-                        borderRadius: BorderRadius.all(Radius.circular(10)),
+                      decoration: BoxDecoration(
+                        color: Theme.of(context).cardColor,
+                        borderRadius:
+                            const BorderRadius.all(Radius.circular(10)),
                       ),
                       child: const Padding(
                         padding: EdgeInsets.symmetric(

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:online_market/splash_screen.dart';
+import 'package:online_market/utils/app_themes.dart';
 
 import 'core/network/di/app_injections.dart';
 
@@ -28,19 +29,12 @@ class OnlineMarket extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AdaptiveTheme(
-      light: ThemeData(
-        useMaterial3: true,
-        brightness: Brightness.light,
-        colorSchemeSeed: Colors.blue,
-      ),
-      dark: ThemeData(
-        useMaterial3: true,
-        brightness: Brightness.dark,
-        colorSchemeSeed: Colors.blue,
-      ),
-      initial: savedThemeMode ?? AdaptiveThemeMode.light,
+      light: AppThemes.lightTheme,
+      dark: AppThemes.darkTheme,
+      initial: savedThemeMode ?? AdaptiveThemeMode.system,
       builder: (theme, darkTheme) => MaterialApp(
           debugShowCheckedModeBanner: false,
+          title: 'Han Moda',
           theme: theme,
           darkTheme: darkTheme,
           home: const SplashScreen()),

@@ -42,7 +42,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: const Color.fromRGBO(245, 245, 245, 1),
+        backgroundColor: Theme.of(context).primaryColor,
         body: CustomScrollView(
           slivers: [
             SliverPadding(

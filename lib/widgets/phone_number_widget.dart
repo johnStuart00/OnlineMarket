@@ -31,6 +31,7 @@ class _PhoneNumberTextFieldState extends State<PhoneNumberTextField> {
           _PhoneNumberFormatter(),
         ],
         decoration: InputDecoration(
+          fillColor: Theme.of(context).cardColor,
           border: const OutlineInputBorder(),
           prefix: const Text('+993 '),
           //hintText: '-- -- -- --',

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:online_market/widgets/text_widgets/middle_text_widget.dart';
 
 class UserPageWidget extends StatelessWidget {
   final IconData icon;
@@ -22,25 +23,19 @@ class UserPageWidget extends StatelessWidget {
             width: 110,
             height: 100,
             decoration: BoxDecoration(
-              color: Colors.white,
+              color: Theme.of(context).cardColor,
               borderRadius: BorderRadius.circular(10),
             ),
             child: Center(
               child: Icon(
                 icon,
                 size: 40,
-                color: Colors.blue,
+                color: Theme.of(context).iconTheme.color,
               ),
             ),
           ),
           const SizedBox(height: 5),
-          Text(
-            label,
-            style: const TextStyle(
-              fontSize: 16,
-              color: Colors.black,
-            ),
-          ),
+          MiddleTextWidget(widgetText: label)
         ],
       ),
     );

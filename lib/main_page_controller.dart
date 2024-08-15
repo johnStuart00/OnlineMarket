@@ -21,7 +21,7 @@ class _MainPageContollerState extends State<MainPageContoller> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromRGBO(245, 245, 245, 1),
+      backgroundColor: Theme.of(context).primaryColor,
       bottomNavigationBar: CurvedNavigationBar(
         key: _bottomNavigationKey,
         index: 0,
@@ -49,7 +49,7 @@ class _MainPageContollerState extends State<MainPageContoller> {
         ],
         color: Colors.white,
         buttonBackgroundColor: Colors.blue,
-        backgroundColor: const Color.fromRGBO(245, 245, 245, 1),
+        backgroundColor: Theme.of(context).primaryColor,
         animationCurve: Curves.easeInOut,
         animationDuration: const Duration(milliseconds: 300),
         onTap: (index) {

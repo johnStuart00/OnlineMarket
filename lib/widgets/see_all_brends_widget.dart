@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:online_market/utils/screen_size.dart';
 import 'package:online_market/widgets/brend_container_widget.dart';
 import 'package:online_market/widgets/closes_by_category_widget.dart';
-import 'package:online_market/widgets/favorite_widget.dart';
-import 'package:online_market/widgets/product_container_widget.dart';
 import 'package:online_market/widgets/text_widgets/middle_text_widget.dart';
 
 class SeeAllBrendsWindget extends StatefulWidget {
@@ -25,6 +23,7 @@ class _SeeAllBrendsWindgetState extends State<SeeAllBrendsWindget> {
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
+      backgroundColor: Theme.of(context).primaryColor,
       body: Padding(
         padding: const EdgeInsets.only(left: 10.0, top: 10.0, right: 10.0),
         child: Stack(
@@ -40,7 +39,7 @@ class _SeeAllBrendsWindgetState extends State<SeeAllBrendsWindget> {
                   children: [
                     Container(
                       decoration: BoxDecoration(
-                        color: Colors.white,
+                        color: Theme.of(context).cardColor,
                         borderRadius: BorderRadius.circular(30),
                       ),
                       child: IconButton(

@@ -14,9 +14,9 @@ class ClosesCategoryWidget extends StatelessWidget {
     return Container(
       height: 100,
       width: ScreenUtil.screenWidth(context),
-      decoration: const BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.all(Radius.circular(10))),
+      decoration: BoxDecoration(
+          color: Theme.of(context).cardColor,
+          borderRadius: const BorderRadius.all(Radius.circular(10))),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [

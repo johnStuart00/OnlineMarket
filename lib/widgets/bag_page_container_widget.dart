@@ -34,7 +34,7 @@ class _ObjectContainerState extends State<ObjectContainer> {
         width: ScreenUtil.screenWidth(context),
         height: 105,
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: Theme.of(context).cardColor,
           borderRadius: BorderRadius.circular(10.0),
         ),
         child: Row(

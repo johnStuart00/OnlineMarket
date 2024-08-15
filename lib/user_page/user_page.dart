@@ -1,5 +1,6 @@
 // ignore_for_file: use_build_context_synchronously
 
+import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:online_market/widgets/user_page_widget.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -19,6 +20,7 @@ class _UserPageState extends State<UserPage> {
   void initState() {
     super.initState();
     _initializeSections();
+    _getCurrentThemeMode();
   }
 
   void _initializeSections() async {
@@ -78,11 +80,27 @@ class _UserPageState extends State<UserPage> {
     _initializeSections();
   }
 
+  AdaptiveThemeMode? _themeMode;
+
+  void _getCurrentThemeMode() async {
+    _themeMode = await AdaptiveTheme.getThemeMode();
+    setState(() {});
+  }
+
+  void _changeTheme(AdaptiveThemeMode? mode) {
+    setState(() {
+      _themeMode = mode;
+      if (mode != null) {
+        AdaptiveTheme.of(context).setThemeMode(mode);
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: const Color.fromRGBO(245, 245, 245, 1),
+        backgroundColor: Theme.of(context).primaryColor,
         body: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
           const SizedBox(height: 20),
           const Text('Profile'),
@@ -256,8 +274,7 @@ class _UserPageState extends State<UserPage> {
     );
   }
 
-  void _showThemeDialog(BuildContext context) async {
-    final themeMode = await _getThemeMode();
+  void _showThemeDialog(BuildContext context) {
     showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -267,29 +284,27 @@ class _UserPageState extends State<UserPage> {
             mainAxisSize: MainAxisSize.min,
             children: [
               ListTile(
-                title: const Text('Light Mode'),
-                leading: Radio<ThemeMode>(
-                  value: ThemeMode.light,
-                  groupValue: themeMode,
-                  onChanged: (ThemeMode? value) {
-                    if (value != null) {
-                      _setThemeMode(value);
-                      Navigator.of(context).pop();
-                    }
-                  },
+                title: const Text('Light Theme'),
+                leading: Radio<AdaptiveThemeMode>(
+                  value: AdaptiveThemeMode.light,
+                  groupValue: _themeMode,
+                  onChanged: _changeTheme,
                 ),
               ),
               ListTile(
-                title: const Text('Dark Mode'),
-                leading: Radio<ThemeMode>(
-                  value: ThemeMode.dark,
-                  groupValue: themeMode,
-                  onChanged: (ThemeMode? value) {
-                    if (value != null) {
-                      _setThemeMode(value);
-                      Navigator.of(context).pop();
-                    }
-                  },
+                title: const Text('Dark Theme'),
+                leading: Radio<AdaptiveThemeMode>(
+                  value: AdaptiveThemeMode.dark,
+                  groupValue: _themeMode,
+                  onChanged: _changeTheme,
+                ),
+              ),
+              ListTile(
+                title: const Text('System Default'),
+                leading: Radio<AdaptiveThemeMode>(
+                  value: AdaptiveThemeMode.system,
+                  groupValue: _themeMode,
+                  onChanged: _changeTheme,
                 ),
               ),
             ],

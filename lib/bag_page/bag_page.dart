@@ -40,7 +40,7 @@ class _BagPageState extends State<BagPage> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: const Color.fromRGBO(245, 245, 245, 1),
+        backgroundColor: Theme.of(context).primaryColor,
         body: Padding(
             padding: const EdgeInsets.only(left: 10.0, top: 10.0, right: 10.0),
             child: Stack(
@@ -93,7 +93,11 @@ class _BagPageState extends State<BagPage> {
                     padding: const EdgeInsets.all(18.0),
                     height: 200,
                     width: ScreenUtil.screenWidth(context),
-                    color: Colors.white,
+                    decoration: BoxDecoration(
+                        color: Theme.of(context).cardColor,
+                        borderRadius: const BorderRadius.only(
+                            topLeft: Radius.circular(10),
+                            topRight: Radius.circular(10))),
                     child: Column(
                       children: [
                         const Row(
@@ -134,6 +138,9 @@ class _BagPageState extends State<BagPage> {
                               ),
                             );
                           },
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Theme.of(context).primaryColor,
+                          ),
                           child: SizedBox(
                             width: ScreenUtil.setWidth(context, 0.7),
                             height: 40,

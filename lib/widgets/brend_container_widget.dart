@@ -15,7 +15,7 @@ class BrendWidget extends StatelessWidget {
         width: ScreenUtil.setWidth(context, 0.2),
         padding: const EdgeInsets.only(right: 10.0, left: 10.0),
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: Theme.of(context).cardColor,
           borderRadius: BorderRadius.circular(10),
         ),
         child: brendImage,

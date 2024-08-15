@@ -24,9 +24,9 @@ class _ProductContainerWidgetState extends State<ProductContainerWidget> {
       child: Container(
         height: 250,
         width: 200,
-        decoration: const BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.all(Radius.circular(10))),
+        decoration: BoxDecoration(
+            color: Theme.of(context).cardColor,
+            borderRadius: const BorderRadius.all(Radius.circular(10))),
         child: Column(
           children: [
             Expanded(
@@ -85,7 +85,7 @@ class _ProductContainerWidgetState extends State<ProductContainerWidget> {
                         child: MiddleTextWidget(widgetText: '\$302.00')),
                     Container(
                       decoration: BoxDecoration(
-                        color: Colors.blue[400],
+                        color: Theme.of(context).iconTheme.color,
                         borderRadius: const BorderRadius.only(
                           topLeft: Radius.circular(10),
                           bottomRight: Radius.circular(10),
@@ -94,7 +94,7 @@ class _ProductContainerWidgetState extends State<ProductContainerWidget> {
                       child: IconButton(
                         onPressed: () {},
                         icon: const Icon(Icons.add),
-                        color: Colors.white,
+                        color: Theme.of(context).cardColor,
                       ),
                     )
                   ],

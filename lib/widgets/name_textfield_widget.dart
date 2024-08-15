@@ -30,6 +30,7 @@ class _NameTextFieldState extends State<NameTextField> {
           FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z0-9\s]')),
         ],
         decoration: InputDecoration(
+          fillColor: Theme.of(context).cardColor,
           border: const OutlineInputBorder(),
           suffix: GestureDetector(
             onTap: textFieldClear,

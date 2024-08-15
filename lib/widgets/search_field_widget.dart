@@ -17,12 +17,13 @@ class _SearchBoxWidgetState extends State<SearchBoxWidget> {
     return SizedBox(
       child: Container(
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: Theme.of(context).cardColor,
           borderRadius: BorderRadius.circular(10),
         ),
         child: TextField(
           controller: widget.searchController,
           decoration: InputDecoration(
+            fillColor: Theme.of(context).cardColor,
             border: InputBorder.none,
             hintText: "Search",
             prefixIcon: const Icon(

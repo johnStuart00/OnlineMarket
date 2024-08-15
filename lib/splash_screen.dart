@@ -14,9 +14,9 @@ class SplashScreen extends StatelessWidget {
     return AnimatedSplashScreen(
       splash: const SplashWidget(),
       nextScreen: const MainPageContoller(),
-      animationDuration: const Duration(seconds: 5),
+      animationDuration: const Duration(seconds: 1),
       splashIconSize: ScreenUtil.screenHeight(context),
-      backgroundColor: Colors.white,
+      backgroundColor: Theme.of(context).primaryColor,
     );
   }
 }
@@ -27,7 +27,7 @@ class SplashWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Theme.of(context).primaryColor,
       body: Column(
         children: [
           Expanded(
