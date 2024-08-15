@@ -2,6 +2,7 @@
 
 import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/material.dart';
+import 'package:online_market/widgets/text_widgets/middle_text_widget.dart';
 import 'package:online_market/widgets/user_page_widget.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -67,19 +68,6 @@ class _UserPageState extends State<UserPage> {
     _initializeSections();
   }
 
-  Future<ThemeMode> _getThemeMode() async {
-    final prefs = await SharedPreferences.getInstance();
-    final themeString = prefs.getString('theme_mode') ?? 'light';
-    return themeString == 'dark' ? ThemeMode.dark : ThemeMode.light;
-  }
-
-  Future<void> _setThemeMode(ThemeMode themeMode) async {
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.setString(
-        'theme_mode', themeMode == ThemeMode.dark ? 'dark' : 'light');
-    _initializeSections();
-  }
-
   AdaptiveThemeMode? _themeMode;
 
   void _getCurrentThemeMode() async {
@@ -103,7 +91,7 @@ class _UserPageState extends State<UserPage> {
         backgroundColor: Theme.of(context).primaryColor,
         body: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
           const SizedBox(height: 20),
-          const Text('Profile'),
+          const MiddleTextWidget(widgetText: 'Profile'),
           const SizedBox(height: 20),
           Expanded(
             child: GridView.builder(
@@ -221,7 +209,9 @@ class _UserPageState extends State<UserPage> {
             mainAxisSize: MainAxisSize.min,
             children: [
               ListTile(
-                title: const Text('English'),
+                title: const MiddleTextWidget(
+                  widgetText: 'English',
+                ),
                 leading: Radio<String>(
                   value: 'English',
                   groupValue: selectedLanguage,
@@ -234,7 +224,9 @@ class _UserPageState extends State<UserPage> {
                 ),
               ),
               ListTile(
-                title: const Text('Turkish'),
+                title: const MiddleTextWidget(
+                  widgetText: 'Turkish',
+                ),
                 leading: Radio<String>(
                   value: 'Turkish',
                   groupValue: selectedLanguage,
@@ -247,7 +239,7 @@ class _UserPageState extends State<UserPage> {
                 ),
               ),
               ListTile(
-                title: const Text('Russian'),
+                title: const MiddleTextWidget(widgetText: 'Russian'),
                 leading: Radio<String>(
                   value: 'Russian',
                   groupValue: selectedLanguage,
@@ -284,27 +276,42 @@ class _UserPageState extends State<UserPage> {
             mainAxisSize: MainAxisSize.min,
             children: [
               ListTile(
-                title: const Text('Light Theme'),
+                title: const MiddleTextWidget(widgetText: 'Light Theme'),
                 leading: Radio<AdaptiveThemeMode>(
                   value: AdaptiveThemeMode.light,
                   groupValue: _themeMode,
-                  onChanged: _changeTheme,
+                  onChanged: (AdaptiveThemeMode? value) {
+                    if (value != null) {
+                      _changeTheme(value);
+                      Navigator.of(context).pop(); // Close dialog immediately
+                    }
+                  },
                 ),
               ),
               ListTile(
-                title: const Text('Dark Theme'),
+                title: const MiddleTextWidget(widgetText: 'Dark Theme'),
                 leading: Radio<AdaptiveThemeMode>(
                   value: AdaptiveThemeMode.dark,
                   groupValue: _themeMode,
-                  onChanged: _changeTheme,
+                  onChanged: (AdaptiveThemeMode? value) {
+                    if (value != null) {
+                      _changeTheme(value);
+                      Navigator.of(context).pop(); // Close dialog immediately
+                    }
+                  },
                 ),
               ),
               ListTile(
-                title: const Text('System Default'),
+                title: const MiddleTextWidget(widgetText: 'System Default'),
                 leading: Radio<AdaptiveThemeMode>(
                   value: AdaptiveThemeMode.system,
                   groupValue: _themeMode,
-                  onChanged: _changeTheme,
+                  onChanged: (AdaptiveThemeMode? value) {
+                    if (value != null) {
+                      _changeTheme(value);
+                      Navigator.of(context).pop(); // Close dialog immediately
+                    }
+                  },
                 ),
               ),
             ],

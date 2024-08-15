@@ -67,7 +67,7 @@ class _MainPageContollerState extends State<MainPageContoller> {
   Widget _getPage(int page) {
     switch (page) {
       case 0:
-        return HomePage();
+        return const HomePage();
       case 1:
         return FavoritePage();
       case 2:

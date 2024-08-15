@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get_it/get_it.dart';
 import 'package:mobx/mobx.dart';
@@ -108,7 +107,7 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsets.all(8.0),
+                    padding: const EdgeInsets.all(8.0),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -117,11 +116,12 @@ class _HomePageState extends State<HomePage> {
                           onTap: () {
                             Navigator.of(context).push(
                               MaterialPageRoute(
-                                builder: (context) => SeeAllBrendsWindget(),
+                                builder: (context) =>
+                                    const SeeAllBrendsWindget(),
                               ),
                             );
                           },
-                          child: MarkerTextWidget(widgetText: 'See all'),
+                          child: const MarkerTextWidget(widgetText: 'See all'),
                         )
                       ],
                     ),
@@ -134,7 +134,7 @@ class _HomePageState extends State<HomePage> {
                       }
                       switch (brendcontroller.brends_get!.status) {
                         case FutureStatus.pending:
-                          return CircularProgressIndicator();
+                          return const CircularProgressIndicator();
                         case FutureStatus.rejected:
                           return Text(
                               'Error: ${brendcontroller.brends_get!.error}');
@@ -169,7 +169,7 @@ class _HomePageState extends State<HomePage> {
                     }),
                   ),
                   Padding(
-                    padding: EdgeInsets.all(8.0),
+                    padding: const EdgeInsets.all(8.0),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -214,7 +214,7 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsets.all(8.0),
+                    padding: const EdgeInsets.all(8.0),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
