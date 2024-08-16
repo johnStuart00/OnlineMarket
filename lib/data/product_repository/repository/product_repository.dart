@@ -21,4 +21,19 @@ class ProductRepository {
       throw Exception('Failed to fetch genres $e');
     }
   }
+
+  Future<ProductDto> brendProduct(String id) async {
+    try {
+      final response = await _dio.get(
+        "products?filter[brandId]=${id}",
+      );
+
+      Map<String, dynamic> data = response.data;
+
+      return ProductDto.fromJson(data);
+    } catch (e) {
+      log(e.toString());
+      throw Exception('Failed to fetch genres $e');
+    }
+  }
 }

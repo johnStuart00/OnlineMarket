@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
+import 'package:online_market/data/product_repository/controller/product_controller.dart';
 import 'package:online_market/widgets/category_container_widget.dart';
 import 'package:online_market/widgets/closes_by_category_widget.dart';
 import 'package:online_market/widgets/closes_category_widget.dart';
@@ -33,7 +35,7 @@ class SearchPage extends StatelessWidget {
     'Underwear',
     'Bags',
   ];
-
+  final caregories_controller = GetIt.instance<ProductController>();
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -85,8 +87,10 @@ class SearchPage extends StatelessWidget {
                       onTap: () {
                         Navigator.of(context).push(
                           MaterialPageRoute(
-                            builder: (context) =>
-                                const ClosesByCategoryWidget(),
+                            builder: (context) => ClosesByCategoryWidget(
+                              controller: caregories_controller,
+                              name: '',
+                            ),
                           ),
                         );
                       },

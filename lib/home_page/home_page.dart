@@ -4,6 +4,7 @@ import 'package:get_it/get_it.dart';
 import 'package:mobx/mobx.dart';
 import 'package:online_market/data/banner_repository/controller/brends_controller.dart';
 import 'package:online_market/data/categories_repository/controller/categories_controller.dart';
+import 'package:online_market/data/cateogories_type_repository/controller/cateogries_type_controller.dart';
 import 'package:online_market/data/product_repository/controller/product_controller.dart';
 import 'package:online_market/home_page/models/productModel.dart';
 import 'package:online_market/utils/screen_size.dart';
@@ -21,25 +22,27 @@ import 'package:online_market/widgets/text_widgets/marker_text_widget.dart';
 import 'package:online_market/widgets/text_widgets/middle_text_widget.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+  BrendsController brendcontroller;
+  ProductController productcontroller;
+  CategoriesTypeController cateogriescontroller;
+  HomePage(
+      {required this.brendcontroller,
+      required this.cateogriescontroller,
+      required this.productcontroller});
 
   @override
   State<HomePage> createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> {
-  final brendcontroller = GetIt.instance<BrendsController>();
-  final productcontroller = GetIt.instance<ProductController>();
-  final cateogriescontroller = GetIt.instance<CategoriesController>();
   @override
   void initState() {
     // TODO: implement initState
-    productcontroller.fetchData();
-    brendcontroller.fetchData();
-    cateogriescontroller.fetchData();
+
     super.initState();
   }
 
+  final caregories_controller = GetIt.instance<ProductController>();
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -84,20 +87,20 @@ class _HomePageState extends State<HomePage> {
                   SizedBox(
                     height: 50,
                     child: Observer(builder: (_) {
-                      if (cateogriescontroller.categories == null) {
+                      if (widget.cateogriescontroller.categor == null) {
                         return Container();
                       }
-                      switch (cateogriescontroller.categories!.status) {
+                      switch (widget.cateogriescontroller.categor!.status) {
                         case FutureStatus.pending:
                           return const CircularProgressIndicator();
                         case FutureStatus.rejected:
                           return Text(
-                              'Error: ${brendcontroller.brends_get!.error}');
+                              'Error: ${widget.brendcontroller.brends_get!.error}');
                         case FutureStatus.fulfilled:
                           return ListView.builder(
                             scrollDirection: Axis.horizontal,
-                            itemCount: cateogriescontroller
-                                .categories!.value!.data!.length,
+                            itemCount: widget.cateogriescontroller.categor!
+                                .value!.data!.length,
                             itemBuilder: (BuildContext context, int index) {
                               return Padding(
                                 padding: const EdgeInsets.symmetric(
@@ -114,8 +117,8 @@ class _HomePageState extends State<HomePage> {
                                     );
                                   },
                                   child: CategoryWidget(
-                                    categoryName: cateogriescontroller
-                                        .categories!.value!.data![index].name!,
+                                    categoryName: widget.cateogriescontroller
+                                        .categor!.value!.data![index].name!,
                                   ),
                                 ),
                               );
@@ -135,7 +138,7 @@ class _HomePageState extends State<HomePage> {
                             Navigator.of(context).push(
                               MaterialPageRoute(
                                 builder: (context) =>
-                                    const SeeAllBrendsWindget(),
+                                    SeeAllBrendsWindget(widget.brendcontroller),
                               ),
                             );
                           },
@@ -147,20 +150,20 @@ class _HomePageState extends State<HomePage> {
                   SizedBox(
                     height: 70,
                     child: Observer(builder: (_) {
-                      if (brendcontroller.brends_get == null) {
+                      if (widget.brendcontroller.brends_get == null) {
                         return Container();
                       }
-                      switch (brendcontroller.brends_get!.status) {
+                      switch (widget.brendcontroller.brends_get!.status) {
                         case FutureStatus.pending:
                           return const CircularProgressIndicator();
                         case FutureStatus.rejected:
                           return Text(
-                              'Error: ${brendcontroller.brends_get!.error}');
+                              'Error: ${widget.brendcontroller.brends_get!.error}');
                         case FutureStatus.fulfilled:
                           return ListView.builder(
                             scrollDirection: Axis.horizontal,
-                            itemCount:
-                                brendcontroller.brends_get!.value!.data!.length,
+                            itemCount: widget.brendcontroller.brends_get!.value!
+                                .data!.length,
                             itemBuilder: (BuildContext context, int index) {
                               return Padding(
                                 padding: const EdgeInsets.symmetric(
@@ -171,7 +174,7 @@ class _HomePageState extends State<HomePage> {
                                   onTap: () {},
                                   child: BrendWidget(
                                     brendImage: Image.network(
-                                      brendcontroller.brends_get!.value!
+                                      widget.brendcontroller.brends_get!.value!
                                           .data![index].logo!,
                                       errorBuilder: (context, error,
                                               stackTrace) =>
@@ -196,8 +199,10 @@ class _HomePageState extends State<HomePage> {
                             onTap: () {
                               Navigator.of(context).push(
                                 MaterialPageRoute(
-                                  builder: (context) =>
-                                      const ClosesByCategoryWidget(),
+                                  builder: (context) => ClosesByCategoryWidget(
+                                    controller: caregories_controller,
+                                    name: '',
+                                  ),
                                 ),
                               );
                             },
@@ -209,10 +214,11 @@ class _HomePageState extends State<HomePage> {
                   SizedBox(
                     height: 250,
                     child: Observer(builder: (_) {
-                      if (productcontroller.product_controller == null) {
+                      if (widget.productcontroller.product_controller == null) {
                         return Container();
                       }
-                      switch (productcontroller.product_controller!.status) {
+                      switch (
+                          widget.productcontroller.product_controller!.status) {
                         case FutureStatus.pending:
                           return CircularProgressIndicator();
                         case FutureStatus.rejected:
@@ -220,10 +226,10 @@ class _HomePageState extends State<HomePage> {
                         case FutureStatus.fulfilled:
                           return ListView.builder(
                             scrollDirection: Axis.horizontal,
-                            itemCount: productcontroller
+                            itemCount: widget.productcontroller
                                 .product_controller!.value!.data!.length,
                             itemBuilder: (BuildContext context, int index) {
-                              var pro = productcontroller
+                              var pro = widget.productcontroller
                                   .product_controller!.value!.data![index];
                               return Padding(
                                 padding: const EdgeInsets.symmetric(
@@ -263,8 +269,10 @@ class _HomePageState extends State<HomePage> {
                           onTap: () {
                             Navigator.of(context).push(
                               MaterialPageRoute(
-                                builder: (context) =>
-                                    const ClosesByCategoryWidget(),
+                                builder: (context) => ClosesByCategoryWidget(
+                                  controller: caregories_controller,
+                                  name: '',
+                                ),
                               ),
                             );
                           },
@@ -277,10 +285,10 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
             Observer(builder: (_) {
-              if (productcontroller.product_controller == null) {
+              if (widget.productcontroller.product_controller == null) {
                 return Container();
               }
-              switch (productcontroller.product_controller!.status) {
+              switch (widget.productcontroller.product_controller!.status) {
                 case FutureStatus.pending:
                   return SliverFillRemaining(
                     child: CircularProgressIndicator(),
@@ -299,8 +307,8 @@ class _HomePageState extends State<HomePage> {
                       ),
                       delegate: SliverChildBuilderDelegate(
                         (BuildContext context, int index) {
-                          var pro = productcontroller
-                              .product_controller!.value!.data![index];
+                          var pro = widget.productcontroller.product_controller!
+                              .value!.data![index];
                           return GestureDetector(
                               onTap: () {
                                 Navigator.of(context).push(
@@ -318,8 +326,8 @@ class _HomePageState extends State<HomePage> {
                                     price: pro.price!.toDouble()),
                               ));
                         },
-                        childCount: productcontroller
-                            .product_controller!.value!.data!.length,
+                        childCount: widget.productcontroller.product_controller!
+                            .value!.data!.length,
                       ),
                     ),
                   );

@@ -25,6 +25,22 @@ mixin _$ProductController on _ProductController, Store {
     });
   }
 
+  late final _$brend_controllerAtom =
+      Atom(name: '_ProductController.brend_controller', context: context);
+
+  @override
+  ObservableFuture<ProductDto>? get brend_controller {
+    _$brend_controllerAtom.reportRead();
+    return super.brend_controller;
+  }
+
+  @override
+  set brend_controller(ObservableFuture<ProductDto>? value) {
+    _$brend_controllerAtom.reportWrite(value, super.brend_controller, () {
+      super.brend_controller = value;
+    });
+  }
+
   late final _$fetchDataAsyncAction =
       AsyncAction('_ProductController.fetchData', context: context);
 
@@ -33,10 +49,19 @@ mixin _$ProductController on _ProductController, Store {
     return _$fetchDataAsyncAction.run(() => super.fetchData());
   }
 
+  late final _$brendProductAsyncAction =
+      AsyncAction('_ProductController.brendProduct', context: context);
+
+  @override
+  Future<void> brendProduct(String id) {
+    return _$brendProductAsyncAction.run(() => super.brendProduct(id));
+  }
+
   @override
   String toString() {
     return '''
-product_controller: ${product_controller}
+product_controller: ${product_controller},
+brend_controller: ${brend_controller}
     ''';
   }
 }
