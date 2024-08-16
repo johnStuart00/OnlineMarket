@@ -275,18 +275,15 @@ class _UserPageState extends State<UserPage> {
           content: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              ListTile(
-                title: const MiddleTextWidget(widgetText: 'Light Theme'),
-                leading: Radio<AdaptiveThemeMode>(
-                  value: AdaptiveThemeMode.light,
-                  groupValue: _themeMode,
-                  onChanged: (AdaptiveThemeMode? value) {
-                    if (value != null) {
-                      _changeTheme(value);
-                      Navigator.of(context).pop(); // Close dialog immediately
-                    }
-                  },
-                ),
+              RadioListTile<AdaptiveThemeMode>(
+                title: const Text('Light Theme'),
+                value: AdaptiveThemeMode.light,
+                groupValue: _themeMode,
+                onChanged: (AdaptiveThemeMode? value) {
+                  setState(() {
+                    _themeMode = value;
+                  });
+                },
               ),
               ListTile(
                 title: const MiddleTextWidget(widgetText: 'Dark Theme'),
