@@ -276,40 +276,37 @@ class _UserPageState extends State<UserPage> {
             mainAxisSize: MainAxisSize.min,
             children: [
               RadioListTile<AdaptiveThemeMode>(
-                title: const Text('Light Theme'),
+                title: const MiddleTextWidget(widgetText: 'Light Theme'),
                 value: AdaptiveThemeMode.light,
                 groupValue: _themeMode,
                 onChanged: (AdaptiveThemeMode? value) {
-                  setState(() {
-                    _themeMode = value;
-                  });
+                  if (value != null) {
+                    _changeTheme(value);
+                    Navigator.of(context).pop();
+                  }
                 },
               ),
-              ListTile(
+              RadioListTile<AdaptiveThemeMode>(
                 title: const MiddleTextWidget(widgetText: 'Dark Theme'),
-                leading: Radio<AdaptiveThemeMode>(
-                  value: AdaptiveThemeMode.dark,
-                  groupValue: _themeMode,
-                  onChanged: (AdaptiveThemeMode? value) {
-                    if (value != null) {
-                      _changeTheme(value);
-                      Navigator.of(context).pop(); // Close dialog immediately
-                    }
-                  },
-                ),
+                value: AdaptiveThemeMode.dark,
+                groupValue: _themeMode,
+                onChanged: (AdaptiveThemeMode? value) {
+                  if (value != null) {
+                    _changeTheme(value);
+                    Navigator.of(context).pop();
+                  }
+                },
               ),
-              ListTile(
-                title: const MiddleTextWidget(widgetText: 'System Default'),
-                leading: Radio<AdaptiveThemeMode>(
-                  value: AdaptiveThemeMode.system,
-                  groupValue: _themeMode,
-                  onChanged: (AdaptiveThemeMode? value) {
-                    if (value != null) {
-                      _changeTheme(value);
-                      Navigator.of(context).pop(); // Close dialog immediately
-                    }
-                  },
-                ),
+              RadioListTile<AdaptiveThemeMode>(
+                title: const MiddleTextWidget(widgetText: 'System Theme'),
+                value: AdaptiveThemeMode.system,
+                groupValue: _themeMode,
+                onChanged: (AdaptiveThemeMode? value) {
+                  if (value != null) {
+                    _changeTheme(value);
+                    Navigator.of(context).pop();
+                  }
+                },
               ),
             ],
           ),

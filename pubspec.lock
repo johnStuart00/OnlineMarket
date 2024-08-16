@@ -286,6 +286,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.0.2"
+  flutter_local_authentication:
+    dependency: "direct main"
+    description:
+      name: flutter_local_authentication
+      sha256: eb2e471ba77fbc42b6ce8b358939dc9878dc71fcce5a482a8ddcb045563d87cd
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.2.0"
   flutter_mobx:
     dependency: "direct main"
     description:
@@ -652,10 +660,10 @@ packages:
     dependency: "direct main"
     description:
       name: shared_preferences
-      sha256: c272f9cabca5a81adc9b0894381e9c1def363e980f960fa903c604c471b22f68
+      sha256: "746e5369a43170c25816cc472ee016d3a66bc13fcf430c0bc41ad7b4b2922051"
       url: "https://pub.dev"
     source: hosted
-    version: "2.3.1"
+    version: "2.3.2"
   shared_preferences_android:
     dependency: transitive
     description:

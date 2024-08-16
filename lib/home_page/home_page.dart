@@ -3,12 +3,9 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get_it/get_it.dart';
 import 'package:mobx/mobx.dart';
 import 'package:online_market/data/banner_repository/controller/brends_controller.dart';
-import 'package:online_market/data/categories_repository/controller/categories_controller.dart';
 import 'package:online_market/data/cateogories_type_repository/controller/cateogries_type_controller.dart';
 import 'package:online_market/data/product_repository/controller/product_controller.dart';
 import 'package:online_market/home_page/models/productModel.dart';
-import 'package:online_market/utils/screen_size.dart';
-
 import 'package:online_market/widgets/brend_container_widget.dart';
 import 'package:online_market/widgets/category_container_widget.dart';
 import 'package:online_market/widgets/closes_by_category_widget.dart';

@@ -34,6 +34,7 @@ dependencies:
   flutter_mobx: ^2.2.1+1
   get_it: ^7.7.0
   dio: ^5.3.2
+  flutter_local_authentication: ^1.2.0
 
 flutter_launcher_icons:
   android: "launcher_icon"
