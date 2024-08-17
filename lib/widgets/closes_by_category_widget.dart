@@ -97,7 +97,10 @@ class ClosesByCategoryWidget extends StatelessWidget {
                                   img:
                                       "https://static.vecteezy.com/system/resources/previews/008/619/502/non_2x/bag-yellow-orange-red-white-color-golden-background-wallpaper-copy-space-decoration-ornament-business-shopping-friday-sale-store-retail-product-special-surprise-commercial-discount-consumer-3d-render-photo.jpg",
                                   name: pro.name!,
-                                  price: pro.price!.toDouble()),
+                                  price: pro.price!.toDouble(),
+                                  id: pro.id!,
+                                  description: pro.description!),
+                              onPressed: () {},
                             ),
                           );
                         },

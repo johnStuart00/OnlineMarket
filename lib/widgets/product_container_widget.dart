@@ -1,25 +1,33 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:get_it/get_it.dart';
+import 'package:online_market/data/favourity_repository/controller/favourity_controller.dart';
+import 'package:online_market/data/models/favourity_model.dart';
+
 import 'package:online_market/home_page/models/productModel.dart';
 import 'package:online_market/widgets/text_widgets/marker_text_widget.dart';
 import 'package:online_market/widgets/text_widgets/middle_text_widget.dart';
 
+var favourity = GetIt.instance<Favourity_Controller>();
+
 class ProductContainerWidget extends StatefulWidget {
   ProductModel productModel;
-  ProductContainerWidget({required this.productModel});
+
+  VoidCallback onPressed;
+  ProductContainerWidget({
+    super.key,
+    required this.productModel,
+    required this.onPressed,
+  });
 
   @override
   State<ProductContainerWidget> createState() => _ProductContainerWidgetState();
 }
 
 class _ProductContainerWidgetState extends State<ProductContainerWidget> {
-  bool _favoriteButtonPinned = false;
-
-  void _favoritePinned() {
-    setState(() {
-      _favoriteButtonPinned = !_favoriteButtonPinned;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -46,20 +54,23 @@ class _ProductContainerWidgetState extends State<ProductContainerWidget> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      IconButton(
-                        onPressed: () {
-                          _favoritePinned();
-                        },
-                        icon: _favoriteButtonPinned
-                            ? Icon(
-                                Icons.favorite_border,
-                                color: Colors.red[400],
-                              )
-                            : Icon(
-                                Icons.favorite,
-                                color: Colors.red[400],
-                              ),
-                      ),
+                      Observer(builder: (_) {
+                        log(favourity.keys
+                            .contains(widget.productModel.id)
+                            .toString());
+                        return IconButton(
+                          onPressed: widget.onPressed,
+                          icon: favourity.keys.contains(widget.productModel.id)
+                              ? Icon(
+                                  Icons.favorite_border,
+                                  color: Colors.red[400],
+                                )
+                              : Icon(
+                                  Icons.favorite,
+                                  color: Colors.white,
+                                ),
+                        );
+                      }),
                     ],
                   ),
                 ),

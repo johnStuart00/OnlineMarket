@@ -1,9 +1,13 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get_it/get_it.dart';
 import 'package:mobx/mobx.dart';
 import 'package:online_market/data/banner_repository/controller/brends_controller.dart';
 import 'package:online_market/data/cateogories_type_repository/controller/cateogries_type_controller.dart';
+import 'package:online_market/data/favourity_repository/controller/favourity_controller.dart';
+import 'package:online_market/data/models/favourity_model.dart';
 import 'package:online_market/data/product_repository/controller/product_controller.dart';
 import 'package:online_market/home_page/models/productModel.dart';
 import 'package:online_market/widgets/brend_container_widget.dart';
@@ -35,7 +39,7 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     // TODO: implement initState
-
+    favourity.readdb();
     super.initState();
   }
 
@@ -247,7 +251,20 @@ class _HomePageState extends State<HomePage> {
                                         img:
                                             "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTBbmndaKuy8w2TPeq2mCtia2PIxHYuV4uCng&s",
                                         name: pro.name!,
-                                        price: pro.price!.toDouble()),
+                                        price: pro.price!.toDouble(),
+                                        description: pro.description!,
+                                        id: pro.id!),
+                                    onPressed: () {
+                                      log("message");
+
+                                      favourity.checkdb(
+                                          pro.id!,
+                                          Favourity_model(
+                                              dis: pro.name!,
+                                              id: pro.id!,
+                                              name: pro.name!,
+                                              price: pro.price.toString()));
+                                    },
                                   ),
                                 ),
                               );
@@ -320,7 +337,9 @@ class _HomePageState extends State<HomePage> {
                                     img:
                                         "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTBbmndaKuy8w2TPeq2mCtia2PIxHYuV4uCng&s",
                                     name: pro.name!,
-                                    price: pro.price!.toDouble()),
+                                    price: pro.price!.toDouble(),
+                                    description: pro.description!,
+                                    id: pro.id!),
                               ));
                         },
                         childCount: widget.productcontroller.product_controller!
