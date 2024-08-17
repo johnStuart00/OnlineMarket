@@ -86,9 +86,7 @@ class _FavoriteWidgetState extends State<FavoriteWidget> {
                     child: Container(
                       height: 450,
                       decoration: const BoxDecoration(
-                        borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(10),
-                            topRight: Radius.circular(10)),
+                        borderRadius: BorderRadius.all(Radius.circular(10)),
                         image: DecorationImage(
                           image: AssetImage('assets/product_photo/nike001.png'),
                           fit: BoxFit.fill,
@@ -96,16 +94,20 @@ class _FavoriteWidgetState extends State<FavoriteWidget> {
                       ),
                       child: SizedBox(
                         width: ScreenUtil.screenWidth(context),
-                        child: const Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            SizedBox(
-                                width: 240,
-                                child: LargeTextWidget(
-                                    widgetText: 'Nike Air Max 270 Essential')),
-                            MiddleTextWidget(widgetText: 'Men\'s shoes'),
-                            LargeTextWidget(widgetText: '\$179.39'),
-                          ],
+                        child: const Padding(
+                          padding: EdgeInsets.only(left: 10),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              SizedBox(
+                                  width: 240,
+                                  child: LargeTextWidget(
+                                      widgetText:
+                                          'Nike Air Max 270 Essential')),
+                              MiddleTextWidget(widgetText: 'Men\'s shoes'),
+                              LargeTextWidget(widgetText: '\$179.39'),
+                            ],
+                          ),
                         ),
                       ),
                     ),
@@ -136,6 +138,8 @@ class _FavoriteWidgetState extends State<FavoriteWidget> {
                                 height: ScreenUtil.setHeight(context, 0.5),
                                 width: ScreenUtil.setWidth(context, 0.15),
                                 decoration: BoxDecoration(
+                                  borderRadius: const BorderRadius.all(
+                                      Radius.circular(10)),
                                   image: DecorationImage(
                                     image: AssetImage(brendImagePaths[index]),
                                     fit: BoxFit.fill,
@@ -181,7 +185,7 @@ class _FavoriteWidgetState extends State<FavoriteWidget> {
                       height: 50,
                       width: 50,
                       decoration: BoxDecoration(
-                        color: Theme.of(context).cardColor,
+                        color: Theme.of(context).primaryColor,
                         borderRadius: BorderRadius.circular(30),
                       ),
                       child: IconButton(
@@ -202,7 +206,7 @@ class _FavoriteWidgetState extends State<FavoriteWidget> {
                     Container(
                       height: 50,
                       decoration: BoxDecoration(
-                        color: Theme.of(context).cardColor,
+                        color: Theme.of(context).primaryColor,
                         borderRadius:
                             const BorderRadius.all(Radius.circular(10)),
                       ),
