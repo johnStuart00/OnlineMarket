@@ -11,6 +11,7 @@ import 'package:online_market/utils/app_themes.dart';
 import 'package:path_provider/path_provider.dart';
 
 import 'core/network/di/app_injections.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -46,11 +47,15 @@ class OnlineMarket extends StatelessWidget {
       dark: AppThemes.darkTheme,
       initial: savedThemeMode ?? AdaptiveThemeMode.system,
       builder: (theme, darkTheme) => MaterialApp(
-          debugShowCheckedModeBanner: false,
-          title: 'Han Moda',
-          theme: theme,
-          darkTheme: darkTheme,
-          home: const SplashScreen()),
+        localizationsDelegates: AppLocalizations.localizationsDelegates,
+        supportedLocales: AppLocalizations.supportedLocales,
+        locale: const Locale('tk'),
+        debugShowCheckedModeBanner: false,
+        title: 'Han Moda',
+        theme: theme,
+        darkTheme: darkTheme,
+        home: const SplashScreen(),
+      ),
     );
   }
 }

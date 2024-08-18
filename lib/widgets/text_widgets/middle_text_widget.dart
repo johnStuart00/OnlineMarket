@@ -12,6 +12,7 @@ class MiddleTextWidget extends StatelessWidget {
     return Text(
       widgetText,
       style: Theme.of(context).textTheme.bodyMedium,
+      overflow: TextOverflow.ellipsis,
     );
   }
 }

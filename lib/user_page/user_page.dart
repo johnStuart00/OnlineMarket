@@ -6,6 +6,8 @@ import 'package:online_market/widgets/text_widgets/middle_text_widget.dart';
 import 'package:online_market/widgets/user_page_widget.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 class UserPage extends StatefulWidget {
   const UserPage({super.key});
 
@@ -26,23 +28,21 @@ class _UserPageState extends State<UserPage> {
 
   void _initializeSections() async {
     final isNotificationsOn = await _getNotificationStatus();
-    //final selectedLanguage = await _getSelectedLanguage();
-    //final themeMode = await _getThemeMode();
+
     setState(() {
       _sections = [
         Section(
           isNotificationsOn
               ? Icons.notifications_active
               : Icons.notifications_off,
-          'Notifications',
+          AppLocalizations.of(context)!.notifications,
         ),
-        Section(Icons.chat, 'Keep in touch'),
-        Section(Icons.info, 'About us'),
-        Section(Icons.language, 'Language'),
-        Section(Icons.dark_mode_outlined, 'Theme'),
-        Section(Icons.delivery_dining, 'Delivery'),
+        Section(Icons.chat, AppLocalizations.of(context)!.keep_in_touch),
+        Section(Icons.info, AppLocalizations.of(context)!.about_us),
+        Section(Icons.language, AppLocalizations.of(context)!.language),
+        Section(Icons.dark_mode_outlined, AppLocalizations.of(context)!.theme),
+        Section(Icons.delivery_dining, AppLocalizations.of(context)!.delivery),
       ];
-      //_themeMode = themeMode;
     });
   }
 
@@ -91,7 +91,7 @@ class _UserPageState extends State<UserPage> {
         backgroundColor: Theme.of(context).primaryColor,
         body: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
           const SizedBox(height: 20),
-          const MiddleTextWidget(widgetText: 'Profile'),
+          MiddleTextWidget(widgetText: AppLocalizations.of(context)!.profile),
           const SizedBox(height: 20),
           Expanded(
             child: GridView.builder(

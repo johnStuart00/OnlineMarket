@@ -18,6 +18,7 @@ class UserPageWidget extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Container(
             width: 110,
@@ -35,7 +36,11 @@ class UserPageWidget extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 5),
-          MiddleTextWidget(widgetText: label)
+          Expanded(
+            child: MiddleTextWidget(
+              widgetText: label,
+            ),
+          )
         ],
       ),
     );

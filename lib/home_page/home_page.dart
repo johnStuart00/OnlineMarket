@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get_it/get_it.dart';
 import 'package:mobx/mobx.dart';
@@ -21,6 +22,8 @@ import 'package:online_market/widgets/text_widgets/large_text_widget.dart';
 import 'package:online_market/widgets/product_container_widget.dart';
 import 'package:online_market/widgets/text_widgets/marker_text_widget.dart';
 import 'package:online_market/widgets/text_widgets/middle_text_widget.dart';
+
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class HomePage extends StatefulWidget {
   BrendsController brendcontroller;
@@ -55,7 +58,7 @@ class _HomePageState extends State<HomePage> {
               padding: const EdgeInsets.only(left: 10.0),
               sliver: SliverList(
                 delegate: SliverChildListDelegate([
-                  const Padding(
+                  Padding(
                     padding: EdgeInsets.all(8.0),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -65,7 +68,7 @@ class _HomePageState extends State<HomePage> {
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             LargeTextWidget(
-                              widgetText: 'Explore',
+                              widgetText: AppLocalizations.of(context)!.explore,
                             ),
                             // Container(
                             //   decoration: BoxDecoration(
@@ -80,7 +83,8 @@ class _HomePageState extends State<HomePage> {
                         ),
                         SizedBox(height: 5),
                         MiddleTextWidget(
-                          widgetText: 'Select Category',
+                          widgetText:
+                              AppLocalizations.of(context)!.select_category,
                         ),
                       ],
                     ),
@@ -133,7 +137,9 @@ class _HomePageState extends State<HomePage> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        const MiddleTextWidget(widgetText: 'Brendler'),
+                        MiddleTextWidget(
+                          widgetText: AppLocalizations.of(context)!.brends,
+                        ),
                         GestureDetector(
                           onTap: () {
                             Navigator.of(context).push(
@@ -143,7 +149,9 @@ class _HomePageState extends State<HomePage> {
                               ),
                             );
                           },
-                          child: const MarkerTextWidget(widgetText: 'See all'),
+                          child: MarkerTextWidget(
+                            widgetText: AppLocalizations.of(context)!.see_all,
+                          ),
                         )
                       ],
                     ),
@@ -195,20 +203,25 @@ class _HomePageState extends State<HomePage> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        const MiddleTextWidget(widgetText: 'Popular products'),
+                        MiddleTextWidget(
+                          widgetText:
+                              AppLocalizations.of(context)!.popular_products,
+                        ),
                         GestureDetector(
-                            onTap: () {
-                              Navigator.of(context).push(
-                                MaterialPageRoute(
-                                  builder: (context) => ClosesByCategoryWidget(
-                                    controller: caregories_controller,
-                                    name: '',
-                                  ),
+                          onTap: () {
+                            Navigator.of(context).push(
+                              MaterialPageRoute(
+                                builder: (context) => ClosesByCategoryWidget(
+                                  controller: caregories_controller,
+                                  name: '',
                                 ),
-                              );
-                            },
-                            child:
-                                const MarkerTextWidget(widgetText: 'See all'))
+                              ),
+                            );
+                          },
+                          child: MarkerTextWidget(
+                            widgetText: AppLocalizations.of(context)!.see_all,
+                          ),
+                        ),
                       ],
                     ),
                   ),
@@ -278,7 +291,10 @@ class _HomePageState extends State<HomePage> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        const MiddleTextWidget(widgetText: 'New Arrivals'),
+                        MiddleTextWidget(
+                          widgetText:
+                              AppLocalizations.of(context)!.new_arrivals,
+                        ),
                         GestureDetector(
                           onTap: () {
                             Navigator.of(context).push(
@@ -290,7 +306,9 @@ class _HomePageState extends State<HomePage> {
                               ),
                             );
                           },
-                          child: const MarkerTextWidget(widgetText: 'See all'),
+                          child: MarkerTextWidget(
+                            widgetText: AppLocalizations.of(context)!.see_all,
+                          ),
                         )
                       ],
                     ),
