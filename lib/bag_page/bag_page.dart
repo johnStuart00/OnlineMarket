@@ -5,6 +5,7 @@ import 'package:online_market/widgets/checkout_widget.dart';
 import 'package:online_market/widgets/text_widgets/large_text_widget.dart';
 import 'package:online_market/widgets/text_widgets/marker_text_widget.dart';
 import 'package:online_market/widgets/text_widgets/middle_text_widget.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class BagPage extends StatefulWidget {
   const BagPage({super.key});
@@ -45,7 +46,7 @@ class _BagPageState extends State<BagPage> {
             padding: const EdgeInsets.only(left: 10.0, top: 10.0, right: 10.0),
             child: Stack(
               children: [
-                const Positioned(
+                Positioned(
                   top: 0,
                   left: 0,
                   right: 0,
@@ -54,7 +55,8 @@ class _BagPageState extends State<BagPage> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        MiddleTextWidget(widgetText: 'My Bag'),
+                        MiddleTextWidget(
+                            widgetText: AppLocalizations.of(context)!.my_bag),
                       ],
                     ),
                   ),
@@ -100,19 +102,23 @@ class _BagPageState extends State<BagPage> {
                             topRight: Radius.circular(10))),
                     child: Column(
                       children: [
-                        const Row(
+                        Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            MiddleTextWidget(widgetText: 'Subtotal'),
-                            MarkerTextWidget(widgetText: '\$753.95'),
+                            MiddleTextWidget(
+                                widgetText:
+                                    AppLocalizations.of(context)!.subtotal),
+                            const MarkerTextWidget(widgetText: '\$753.95'),
                           ],
                         ),
                         const SizedBox(height: 10),
-                        const Row(
+                        Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            MiddleTextWidget(widgetText: 'Delivery'),
-                            MarkerTextWidget(widgetText: '\$60.00'),
+                            MiddleTextWidget(
+                                widgetText:
+                                    AppLocalizations.of(context)!.delivery),
+                            const MarkerTextWidget(widgetText: '\$60.00'),
                           ],
                         ),
                         const Divider(
@@ -122,29 +128,36 @@ class _BagPageState extends State<BagPage> {
                           endIndent: 1,
                           color: Colors.grey,
                         ),
-                        const Row(
+                        Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            LargeTextWidget(widgetText: 'Total Cost:'),
-                            MarkerTextWidget(widgetText: '\$813.95'),
+                            LargeTextWidget(
+                                widgetText:
+                                    AppLocalizations.of(context)!.total_cost),
+                            const MarkerTextWidget(widgetText: '\$813.95'),
                           ],
                         ),
                         const SizedBox(height: 10.0),
-                        ElevatedButton(
-                          onPressed: () {
-                            Navigator.of(context).push(
-                              MaterialPageRoute(
-                                builder: (context) => const BagPageWidget(),
-                              ),
-                            );
-                          },
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: Theme.of(context).primaryColor,
-                          ),
-                          child: SizedBox(
-                            width: ScreenUtil.setWidth(context, 0.7),
-                            height: 40,
-                            child: const Center(child: Text('Checkout')),
+                        Expanded(
+                          child: ElevatedButton(
+                            onPressed: () {
+                              Navigator.of(context).push(
+                                MaterialPageRoute(
+                                  builder: (context) => const BagPageWidget(),
+                                ),
+                              );
+                            },
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Theme.of(context).primaryColor,
+                            ),
+                            child: SizedBox(
+                              width: ScreenUtil.setWidth(context, 0.7),
+                              height: 40,
+                              child: Center(
+                                  child: MiddleTextWidget(
+                                      widgetText: AppLocalizations.of(context)!
+                                          .checkout)),
+                            ),
                           ),
                         ),
                       ],

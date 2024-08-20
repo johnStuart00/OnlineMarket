@@ -23,6 +23,14 @@
   "english": "Iňlis dili",
   "light_theme": "Ýagty tema",
   "dark_theme": "Gara tema",
-  "system_theme": "Enjam tema"
-  
+  "system_theme": "Enjam tema",
+   "favorites": "Halanýanlar",
+   "my_bag": "Meniň sumkam",
+    "subtotal": "Harytlaryň bahasy",
+  "delivery": "Eltip bermek",
+  "total_cost": "Jemi bahasy:",
+  "checkout": "Tassyklamak"
+   
 }
+  
+

@@ -23,5 +23,11 @@
   "english": "English language",
   "light_theme": "Light Theme",
   "dark_theme": "Dark Theme",
-  "system_theme": "System Theme"
+  "system_theme": "System Theme",
+  "favorites": "Favorites",
+  "my_bag": "My Bag",
+  "subtotal": "Subtotal",
+  "delivery": "Delivery",
+  "total_cost": "Total Cost:",
+  "checkout": "Checkout"
 }

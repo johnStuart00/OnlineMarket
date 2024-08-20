@@ -23,6 +23,13 @@
   "english": "Английский язык",
   "light_theme": "Светлая тема",
   "dark_theme": "Темная тема",
-  "system_theme": "Системная тема"
-  
+  "system_theme": "Системная тема",
+  "favorites": "Избранное",
+  "my_bag": "Моя сумка",
+  "subtotal": "Суммарный итог",
+  "delivery": "Доставка",
+  "total_cost": "Общая стоимость:",
+  "checkout": "Касса"
+ 
 }
+  

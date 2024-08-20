@@ -1,3 +1,4 @@
+import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:online_market/utils/screen_size.dart';
 import 'package:online_market/widgets/text_widgets/large_text_widget.dart';
@@ -69,6 +70,40 @@ class _ObjectContainerState extends State<ObjectContainer> {
                 ),
               ),
             ),
+            Expanded(
+                child: Column(
+              children: [
+                Container(
+                  width: 10.0,
+                  height: 10.0,
+                  decoration: const BoxDecoration(
+                      color: Colors.red,
+                      borderRadius: BorderRadius.all(Radius.circular(10))),
+                  child: const Icon(Icons.delete),
+                ),
+                Container(
+                  width: 10.0,
+                  height: 10.0,
+                  decoration: BoxDecoration(
+                      color: Theme.of(context).cardColor,
+                      borderRadius:
+                          const BorderRadius.all(Radius.circular(10))),
+                  child: Row(
+                    children: [
+                      IconButton(
+                        onPressed: () {},
+                        icon: const Icon(Icons.arrow_downward_rounded),
+                      ),
+                      Text("1"),
+                      IconButton(
+                        onPressed: () {},
+                        icon: const Icon(Icons.arrow_upward_rounded),
+                      ),
+                    ],
+                  ),
+                )
+              ],
+            ))
           ],
         ),
       ),

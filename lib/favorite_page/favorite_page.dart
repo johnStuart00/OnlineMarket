@@ -10,21 +10,16 @@ import 'package:online_market/widgets/favorite_widget.dart';
 import 'package:online_market/widgets/product_container_widget.dart';
 import 'package:online_market/widgets/text_widgets/middle_text_widget.dart';
 
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 class FavoritePage extends StatefulWidget {
-  FavoritePage({super.key});
+  const FavoritePage({super.key});
 
   @override
   State<FavoritePage> createState() => _FavoritePageState();
 }
 
 class _FavoritePageState extends State<FavoritePage> {
-  final List<String> favoriteItems = [
-    'assets/product_photo/nike001.png',
-    'assets/product_photo/nike002.png',
-    'assets/product_photo/nike003.png',
-    'assets/product_photo/nike004.png',
-  ];
-
   var favorite = GetIt.instance<Favourity_Controller>();
   @override
   void initState() {
@@ -42,7 +37,7 @@ class _FavoritePageState extends State<FavoritePage> {
             padding: const EdgeInsets.only(left: 10.0, top: 10.0, right: 10.0),
             child: Stack(
               children: [
-                const Positioned(
+                Positioned(
                   top: 0,
                   left: 0,
                   right: 0,
@@ -51,7 +46,9 @@ class _FavoritePageState extends State<FavoritePage> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        MiddleTextWidget(widgetText: 'Favorites'),
+                        MiddleTextWidget(
+                          widgetText: AppLocalizations.of(context)!.favorites,
+                        ),
                       ],
                     ),
                   ),
