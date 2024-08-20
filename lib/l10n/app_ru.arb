@@ -7,10 +7,22 @@
   "new_arrivals": "Новые поступления",
   "profile": "Профиль",
   "notifications": "Уведомления",
+  "notifications_content": "Вы хотите включить или выключить уведомления?",
   "keep_in_touch": "Оставайтесь на связи",
+  "keep_in_touch_content": "Вы можете связаться с нами по адресу: \nEmail: contact@example.com \nPhone: +123 456 7890",
   "about_us": "О нас",
+  "about_us_content": "Домашний адрес: \nУлица: 123 Main St\nГород: Ашхабад\nСтрана: Туркменистан",
   "language": "Язык",
   "theme": "Тема",
-  "delivery": "Доставка"
+  "delivery": "Доставка",
+  "turn_off": "Выключить",
+  "turn_on": "Включить",
+  "close": "Закрыть",
+  "turkmen": "Туркменский язык",
+  "russian": "Русский язык",
+  "english": "Английский язык",
+  "light_theme": "Светлая тема",
+  "dark_theme": "Темная тема",
+  "system_theme": "Системная тема"
   
 }

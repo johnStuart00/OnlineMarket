@@ -2,6 +2,7 @@
 
 import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/material.dart';
+import 'package:online_market/main.dart';
 import 'package:online_market/widgets/text_widgets/middle_text_widget.dart';
 import 'package:online_market/widgets/user_page_widget.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -102,20 +103,21 @@ class _UserPageState extends State<UserPage> {
                 ),
                 itemCount: _sections.length,
                 itemBuilder: (BuildContext context, int index) {
+                  final apploc = AppLocalizations.of(context);
                   final section = _sections[index];
                   return UserPageWidget(
                     icon: section.icon,
                     label: section.label,
                     onTap: () {
-                      if (section.label == 'Notifications') {
+                      if (section.label == apploc!.notifications) {
                         _showNotificationDialog(context);
-                      } else if (section.label == 'Keep in touch') {
+                      } else if (section.label == apploc.keep_in_touch) {
                         _showContactInfoDialog(context);
-                      } else if (section.label == 'About us') {
+                      } else if (section.label == apploc.about_us) {
                         _showAboutUsDialog(context);
-                      } else if (section.label == 'Language') {
+                      } else if (section.label == apploc.language) {
                         _showLanguageDialog(context);
-                      } else if (section.label == 'Theme') {
+                      } else if (section.label == apploc.theme) {
                         _showThemeDialog(context);
                       }
                     },
@@ -128,27 +130,35 @@ class _UserPageState extends State<UserPage> {
   }
 
   void _showNotificationDialog(BuildContext context) {
+    final apploc = AppLocalizations.of(context);
+    final String notifications = apploc!.notifications;
+    final String notifications_content = apploc.notifications_content;
+    final String turn_off = apploc.turn_off;
+    final String turn_on = apploc.turn_on;
     showDialog(
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: const Text('Notifications'),
-          content:
-              const Text('Do you want to turn on or turn off notifications?'),
+          title: MiddleTextWidget(
+            widgetText: notifications,
+          ),
+          content: MiddleTextWidget(
+            widgetText: notifications_content,
+          ),
           actions: [
             TextButton(
               onPressed: () {
                 _setNotificationStatus(false);
                 Navigator.of(context).pop();
               },
-              child: const Text('Turn Off'),
+              child: MiddleTextWidget(widgetText: turn_off),
             ),
             TextButton(
               onPressed: () {
                 _setNotificationStatus(true);
                 Navigator.of(context).pop();
               },
-              child: const Text('Turn On'),
+              child: MiddleTextWidget(widgetText: turn_on),
             ),
           ],
         );
@@ -157,19 +167,22 @@ class _UserPageState extends State<UserPage> {
   }
 
   void _showContactInfoDialog(BuildContext context) {
+    final appLoc = AppLocalizations.of(context);
+    final String keepInTouch = appLoc!.keep_in_touch;
+    final String keepContent = appLoc.keep_in_touch_content;
+    final String close = appLoc.close;
     showDialog(
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: const Text('Keep in touch'),
-          content: const Text(
-              'You can reach us at: \nEmail: contact@example.com\nPhone: +123 456 7890'),
+          title: MiddleTextWidget(widgetText: keepInTouch),
+          content: MiddleTextWidget(widgetText: keepContent),
           actions: [
             TextButton(
               onPressed: () {
                 Navigator.of(context).pop();
               },
-              child: const Text('Close'),
+              child: MiddleTextWidget(widgetText: close),
             ),
           ],
         );
@@ -178,19 +191,22 @@ class _UserPageState extends State<UserPage> {
   }
 
   void _showAboutUsDialog(BuildContext context) {
+    final appLoc = AppLocalizations.of(context);
+    final String aboutUs = appLoc!.about_us;
+    final String aboutContent = appLoc.about_us_content;
+    final String close = appLoc.close;
     showDialog(
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: const Text('About us'),
-          content: const Text(
-              'Home address: \nStreet: 123 Main St\nCity: Ashgabat\nCountry: Turkmenistan'),
+          title: MiddleTextWidget(widgetText: aboutUs),
+          content: MiddleTextWidget(widgetText: aboutContent),
           actions: [
             TextButton(
               onPressed: () {
                 Navigator.of(context).pop();
               },
-              child: const Text('Close'),
+              child: MiddleTextWidget(widgetText: close),
             ),
           ],
         );
@@ -200,17 +216,55 @@ class _UserPageState extends State<UserPage> {
 
   void _showLanguageDialog(BuildContext context) async {
     final selectedLanguage = await _getSelectedLanguage();
+    final appLoc = AppLocalizations.of(context);
+    final String language = appLoc!.language;
+    final String tkm = appLoc.turkmen;
+    final String rus = appLoc.russian;
+    final String eng = appLoc.english;
+    final String close = appLoc.close;
     showDialog(
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: const Text('Choose Language'),
+          title: MiddleTextWidget(widgetText: language),
           content: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
               ListTile(
-                title: const MiddleTextWidget(
-                  widgetText: 'English',
+                title: MiddleTextWidget(
+                  widgetText: tkm,
+                ),
+                leading: Radio<String>(
+                  value: 'Turkmen',
+                  groupValue: selectedLanguage,
+                  onChanged: (String? value) {
+                    if (value != null) {
+                      _setSelectedLanguage(value);
+                      OnlineMarket.setLocale(context, const Locale('tr'));
+                      Navigator.of(context).pop();
+                    }
+                  },
+                ),
+              ),
+              ListTile(
+                title: MiddleTextWidget(
+                  widgetText: rus,
+                ),
+                leading: Radio<String>(
+                  value: 'Russian',
+                  groupValue: selectedLanguage,
+                  onChanged: (String? value) {
+                    if (value != null) {
+                      _setSelectedLanguage(value);
+                      OnlineMarket.setLocale(context, const Locale('ru'));
+                      Navigator.of(context).pop();
+                    }
+                  },
+                ),
+              ),
+              ListTile(
+                title: MiddleTextWidget(
+                  widgetText: eng,
                 ),
                 leading: Radio<String>(
                   value: 'English',
@@ -218,34 +272,7 @@ class _UserPageState extends State<UserPage> {
                   onChanged: (String? value) {
                     if (value != null) {
                       _setSelectedLanguage(value);
-                      Navigator.of(context).pop();
-                    }
-                  },
-                ),
-              ),
-              ListTile(
-                title: const MiddleTextWidget(
-                  widgetText: 'Turkish',
-                ),
-                leading: Radio<String>(
-                  value: 'Turkish',
-                  groupValue: selectedLanguage,
-                  onChanged: (String? value) {
-                    if (value != null) {
-                      _setSelectedLanguage(value);
-                      Navigator.of(context).pop();
-                    }
-                  },
-                ),
-              ),
-              ListTile(
-                title: const MiddleTextWidget(widgetText: 'Russian'),
-                leading: Radio<String>(
-                  value: 'Russian',
-                  groupValue: selectedLanguage,
-                  onChanged: (String? value) {
-                    if (value != null) {
-                      _setSelectedLanguage(value);
+                      OnlineMarket.setLocale(context, const Locale('en'));
                       Navigator.of(context).pop();
                     }
                   },
@@ -258,7 +285,7 @@ class _UserPageState extends State<UserPage> {
               onPressed: () {
                 Navigator.of(context).pop();
               },
-              child: const Text('Cancel'),
+              child: MiddleTextWidget(widgetText: close),
             ),
           ],
         );
@@ -267,16 +294,22 @@ class _UserPageState extends State<UserPage> {
   }
 
   void _showThemeDialog(BuildContext context) {
+    final appLoc = AppLocalizations.of(context);
+    final String theme = appLoc!.theme;
+    final String light = appLoc.light_theme;
+    final String dark = appLoc.dark_theme;
+    final String system = appLoc.system_theme;
+    final String close = appLoc.close;
     showDialog(
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: const Text('Choose Theme'),
+          title: MiddleTextWidget(widgetText: theme),
           content: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
               RadioListTile<AdaptiveThemeMode>(
-                title: const MiddleTextWidget(widgetText: 'Light Theme'),
+                title: MiddleTextWidget(widgetText: light),
                 value: AdaptiveThemeMode.light,
                 groupValue: _themeMode,
                 onChanged: (AdaptiveThemeMode? value) {
@@ -287,7 +320,7 @@ class _UserPageState extends State<UserPage> {
                 },
               ),
               RadioListTile<AdaptiveThemeMode>(
-                title: const MiddleTextWidget(widgetText: 'Dark Theme'),
+                title: MiddleTextWidget(widgetText: dark),
                 value: AdaptiveThemeMode.dark,
                 groupValue: _themeMode,
                 onChanged: (AdaptiveThemeMode? value) {
@@ -298,7 +331,7 @@ class _UserPageState extends State<UserPage> {
                 },
               ),
               RadioListTile<AdaptiveThemeMode>(
-                title: const MiddleTextWidget(widgetText: 'System Theme'),
+                title: MiddleTextWidget(widgetText: system),
                 value: AdaptiveThemeMode.system,
                 groupValue: _themeMode,
                 onChanged: (AdaptiveThemeMode? value) {
@@ -315,7 +348,7 @@ class _UserPageState extends State<UserPage> {
               onPressed: () {
                 Navigator.of(context).pop();
               },
-              child: const Text('Cancel'),
+              child: MiddleTextWidget(widgetText: close),
             ),
           ],
         );

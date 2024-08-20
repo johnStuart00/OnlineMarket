@@ -1,0 +1,28 @@
+{
+  "explore": "Sahypa giriň",
+  "select_category": "Kategoriýany saýlaň",
+  "brends": "Markalar",
+  "see_all": "Hemmesine serediň",
+  "popular_products": "Meşhur önümler",
+  "new_arrivals": "Täze gelenler",
+  "profile": "Profil",
+  "notifications": "Duýduryşlar",
+  "notifications_content": "Duýduryşlary açmak ýa-da öçürmek isleýärsiňizmi?",
+  "keep_in_touch": "Habarlaşmak",
+  "keep_in_touch_content": "Biz bilen habarlaşyp bilersiňiz: \nEmail: contact@example.com \n Telefon: +123 456 7890",
+  "about_us": "Biz hakda",
+  "about_us_content": "Öý salgysy: \nKöçe: 123 Esasy köç \n Şäher: Aşgabat \nÝurduň: Türkmenistan",
+  "language": "Dil",
+  "theme": "Tema",
+  "delivery": "Eltip bermek",
+  "turn_off": "Öçür",
+  "turn_on": "Işlet",
+  "close": "Ýap",
+   "turkmen": "Türkmen dili",
+  "russian": "Rus dili",
+  "english": "Iňlis dili",
+  "light_theme": "Ýagty tema",
+  "dark_theme": "Gara tema",
+  "system_theme": "Enjam tema"
+  
+}

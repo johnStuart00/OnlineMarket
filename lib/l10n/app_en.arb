@@ -7,9 +7,21 @@
   "new_arrivals": "New Arrivals",
   "profile": "Profile",
   "notifications": "Notifications",
+  "notifications_content": "Do you want to turn on or turn off notifications?",
   "keep_in_touch": "Keep in touch",
+  "keep_in_touch_content": "You can reach us at: \nEmail: contact@example.com\nPhone: +123 456 7890",
   "about_us": "About us",
+  "about_us_content": "Home address: \nStreet: 123 Main St\nCity: Ashgabat\nCountry: Turkmenistan",
   "language": "Language",
   "theme": "Theme",
-  "delivery": "Delivery"
+  "delivery": "Delivery",
+  "turn_off": "Turn Off",
+  "turn_on": "Turn On",
+  "close": "Close",
+  "turkmen": "Turkmen language",
+  "russian": "Russian language",
+  "english": "English language",
+  "light_theme": "Light Theme",
+  "dark_theme": "Dark Theme",
+  "system_theme": "System Theme"
 }

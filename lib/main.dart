@@ -33,23 +33,47 @@ void main() async {
   );
 }
 
-class OnlineMarket extends StatelessWidget {
+class OnlineMarket extends StatefulWidget {
   final AdaptiveThemeMode? savedThemeMode;
+
+  static void setLocale(BuildContext context, Locale newLocale) {
+    final state = context.findAncestorStateOfType<_OnlineMarketState>();
+    if (state != null) {
+      state.setLocale(newLocale);
+    } else {
+      // Handle the case where the state is not found
+      print('State not found');
+    }
+  }
+
   const OnlineMarket({
     super.key,
     this.savedThemeMode,
   });
 
   @override
+  State<OnlineMarket> createState() => _OnlineMarketState();
+}
+
+class _OnlineMarketState extends State<OnlineMarket> {
+  Locale _locale = const Locale('en');
+
+  void setLocale(Locale locale) {
+    setState(() {
+      _locale = locale;
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
     return AdaptiveTheme(
       light: AppThemes.lightTheme,
       dark: AppThemes.darkTheme,
-      initial: savedThemeMode ?? AdaptiveThemeMode.system,
+      initial: widget.savedThemeMode ?? AdaptiveThemeMode.system,
       builder: (theme, darkTheme) => MaterialApp(
         localizationsDelegates: AppLocalizations.localizationsDelegates,
         supportedLocales: AppLocalizations.supportedLocales,
-        locale: const Locale('tk'),
+        locale: _locale,
         debugShowCheckedModeBanner: false,
         title: 'Han Moda',
         theme: theme,
