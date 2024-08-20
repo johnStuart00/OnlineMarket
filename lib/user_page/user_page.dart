@@ -60,13 +60,15 @@ class _UserPageState extends State<UserPage> {
 
   Future<String> _getSelectedLanguage() async {
     final prefs = await SharedPreferences.getInstance();
-    return prefs.getString('selected_language') ?? 'English';
+    return prefs.getString('selected_language') ?? 'tr';
   }
 
   Future<void> _setSelectedLanguage(String language) async {
     final prefs = await SharedPreferences.getInstance();
     await prefs.setString('selected_language', language);
-    _initializeSections();
+
+    // Set the locale immediately
+    OnlineMarket.setLocale(context, Locale(language));
   }
 
   AdaptiveThemeMode? _themeMode;
@@ -230,53 +232,41 @@ class _UserPageState extends State<UserPage> {
           content: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              ListTile(
-                title: MiddleTextWidget(
-                  widgetText: tkm,
-                ),
-                leading: Radio<String>(
-                  value: 'Turkmen',
-                  groupValue: selectedLanguage,
-                  onChanged: (String? value) {
-                    if (value != null) {
-                      _setSelectedLanguage(value);
-                      OnlineMarket.setLocale(context, const Locale('tr'));
-                      Navigator.of(context).pop();
-                    }
-                  },
-                ),
+              RadioListTile<String>(
+                title: MiddleTextWidget(widgetText: tkm),
+                value: 'tr',
+                groupValue: selectedLanguage,
+                onChanged: (String? value) {
+                  if (value != null) {
+                    _setSelectedLanguage(value);
+                    OnlineMarket.setLocale(context, const Locale('tr'));
+                    Navigator.of(context).pop();
+                  }
+                },
               ),
-              ListTile(
-                title: MiddleTextWidget(
-                  widgetText: rus,
-                ),
-                leading: Radio<String>(
-                  value: 'Russian',
-                  groupValue: selectedLanguage,
-                  onChanged: (String? value) {
-                    if (value != null) {
-                      _setSelectedLanguage(value);
-                      OnlineMarket.setLocale(context, const Locale('ru'));
-                      Navigator.of(context).pop();
-                    }
-                  },
-                ),
+              RadioListTile<String>(
+                title: MiddleTextWidget(widgetText: rus),
+                value: 'ru',
+                groupValue: selectedLanguage,
+                onChanged: (String? value) {
+                  if (value != null) {
+                    _setSelectedLanguage(value);
+                    OnlineMarket.setLocale(context, const Locale('ru'));
+                    Navigator.of(context).pop();
+                  }
+                },
               ),
-              ListTile(
-                title: MiddleTextWidget(
-                  widgetText: eng,
-                ),
-                leading: Radio<String>(
-                  value: 'English',
-                  groupValue: selectedLanguage,
-                  onChanged: (String? value) {
-                    if (value != null) {
-                      _setSelectedLanguage(value);
-                      OnlineMarket.setLocale(context, const Locale('en'));
-                      Navigator.of(context).pop();
-                    }
-                  },
-                ),
+              RadioListTile<String>(
+                title: MiddleTextWidget(widgetText: eng),
+                value: 'en',
+                groupValue: selectedLanguage,
+                onChanged: (String? value) {
+                  if (value != null) {
+                    _setSelectedLanguage(value);
+                    OnlineMarket.setLocale(context, const Locale('en'));
+                    Navigator.of(context).pop();
+                  }
+                },
               ),
             ],
           ),

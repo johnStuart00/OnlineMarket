@@ -9,6 +9,7 @@ import 'package:online_market/data/models/favourity_model.dart';
 import 'package:online_market/splash_screen.dart';
 import 'package:online_market/utils/app_themes.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'core/network/di/app_injections.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -16,6 +17,8 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   final savedThemeMode = await AdaptiveTheme.getThemeMode();
+  final prefs = await SharedPreferences.getInstance();
+  final selectedLanguage = prefs.getString('selected_language') ?? 'en';
   await AppInjections.registerInjections();
   SystemChrome.setPreferredOrientations(
       [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
@@ -28,12 +31,14 @@ void main() async {
       debugShowCheckedModeBanner: false,
       home: OnlineMarket(
         savedThemeMode: savedThemeMode,
+        initialLocale: Locale(selectedLanguage),
       ),
     ),
   );
 }
 
 class OnlineMarket extends StatefulWidget {
+  final Locale initialLocale;
   final AdaptiveThemeMode? savedThemeMode;
 
   static void setLocale(BuildContext context, Locale newLocale) {
@@ -49,6 +54,7 @@ class OnlineMarket extends StatefulWidget {
   const OnlineMarket({
     super.key,
     this.savedThemeMode,
+    required this.initialLocale,
   });
 
   @override
