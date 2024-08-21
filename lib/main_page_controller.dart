@@ -78,7 +78,6 @@ class _MainPageContollerState extends State<MainPageContoller> {
     );
   }
 
-  // The function for navigate pages
   Widget _getPage(int page) {
     switch (page) {
       case 0:
