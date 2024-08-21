@@ -42,23 +42,23 @@ class _MainPageContollerState extends State<MainPageContoller> {
         index: 0,
         items: <Widget>[
           Image.asset(
-            'assets/icons/home.png',
+            'assets/icons/home_on.png',
             color: _page == 0 ? Colors.white : Colors.grey,
           ),
           Image.asset(
-            'assets/icons/favorite.png',
+            'assets/icons/favorite_off.png',
             color: _page == 1 ? Colors.white : Colors.grey,
           ),
           Image.asset(
-            'assets/icons/bag.png',
+            'assets/icons/bag_on.png',
             color: _page == 2 ? Colors.white : Colors.grey,
           ),
           Image.asset(
-            'assets/icons/search.png',
+            'assets/icons/search_on.png',
             color: _page == 3 ? Colors.white : Colors.grey,
           ),
           Image.asset(
-            'assets/icons/user.png',
+            'assets/icons/user_on.png',
             color: _page == 4 ? Colors.white : Colors.grey,
           ),
         ],
