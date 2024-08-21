@@ -1,7 +1,9 @@
 import 'package:adaptive_theme/adaptive_theme.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:online_market/utils/screen_size.dart';
 import 'package:online_market/widgets/text_widgets/large_text_widget.dart';
+import 'package:online_market/widgets/text_widgets/marker_text_widget.dart';
 import 'package:online_market/widgets/text_widgets/middle_text_widget.dart';
 
 class ObjectContainer extends StatefulWidget {
@@ -27,6 +29,20 @@ class ObjectContainer extends StatefulWidget {
 class _ObjectContainerState extends State<ObjectContainer> {
   int objectCount = 1;
 
+  void _incrementCount() {
+    setState(() {
+      objectCount++;
+    });
+  }
+
+  void _decrementCount() {
+    setState(() {
+      if (objectCount > 1) {
+        objectCount--;
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -41,7 +57,6 @@ class _ObjectContainerState extends State<ObjectContainer> {
         child: Row(
           children: [
             Expanded(
-              flex: 1,
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Container(
@@ -56,54 +71,66 @@ class _ObjectContainerState extends State<ObjectContainer> {
               ),
             ),
             Expanded(
-              flex: 2,
-              child: Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    LargeTextWidget(widgetText: widget.title),
-                    const SizedBox(height: 5.0),
-                    MiddleTextWidget(widgetText: widget.description)
-                  ],
-                ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  LargeTextWidget(widgetText: widget.title),
+                  MiddleTextWidget(widgetText: widget.description),
+                  const MarkerTextWidget(widgetText: '\$565.90')
+                ],
               ),
             ),
-            Expanded(
-                child: Column(
-              children: [
-                Container(
-                  width: 10.0,
-                  height: 10.0,
-                  decoration: const BoxDecoration(
-                      color: Colors.red,
-                      borderRadius: BorderRadius.all(Radius.circular(10))),
-                  child: const Icon(Icons.delete),
-                ),
-                Container(
-                  width: 10.0,
-                  height: 10.0,
-                  decoration: BoxDecoration(
-                      color: Theme.of(context).cardColor,
-                      borderRadius:
-                          const BorderRadius.all(Radius.circular(10))),
-                  child: Row(
-                    children: [
-                      IconButton(
-                        onPressed: () {},
-                        icon: const Icon(Icons.arrow_downward_rounded),
-                      ),
-                      Text("1"),
-                      IconButton(
-                        onPressed: () {},
-                        icon: const Icon(Icons.arrow_upward_rounded),
-                      ),
-                    ],
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  GestureDetector(
+                    onTap: () {},
+                    child: Container(
+                      width: ScreenUtil.setWidth(context, 0.18),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 18.0, vertical: 5.0),
+                      decoration: const BoxDecoration(
+                          color: Colors.red,
+                          borderRadius: BorderRadius.all(Radius.circular(10))),
+                      child: const Icon(Icons.delete),
+                    ),
                   ),
-                )
-              ],
-            ))
+                  Container(
+                    width: ScreenUtil.setWidth(context, 0.18),
+                    padding: const EdgeInsets.symmetric(vertical: 5.0),
+                    decoration: BoxDecoration(
+                        color: Theme.of(context).cardColor,
+                        borderRadius:
+                            const BorderRadius.all(Radius.circular(10)),
+                        border: Border.all(color: Colors.blueAccent)),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        GestureDetector(
+                          onTap: () {
+                            _decrementCount();
+                          },
+                          child: const Icon(Icons.arrow_downward_rounded),
+                        ),
+                        MarkerTextWidget(
+                          widgetText: objectCount.toString(),
+                        ),
+                        GestureDetector(
+                          onTap: () {
+                            _incrementCount();
+                          },
+                          child: const Icon(Icons.arrow_upward_rounded),
+                        )
+                      ],
+                    ),
+                  )
+                ],
+              ),
+            )
           ],
         ),
       ),
