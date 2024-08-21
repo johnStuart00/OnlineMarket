@@ -5,13 +5,12 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get_it/get_it.dart';
 import 'package:online_market/data/favourity_repository/controller/favourity_controller.dart';
-import 'package:online_market/data/models/favourity_model.dart';
 
 import 'package:online_market/home_page/models/productModel.dart';
 import 'package:online_market/widgets/text_widgets/marker_text_widget.dart';
 import 'package:online_market/widgets/text_widgets/middle_text_widget.dart';
 
-var favourity = GetIt.instance<Favourity_Controller>();
+Favourity_Controller favourity = GetIt.instance<Favourity_Controller>();
 
 class ProductContainerWidget extends StatefulWidget {
   ProductModel productModel;
@@ -60,14 +59,14 @@ class _ProductContainerWidgetState extends State<ProductContainerWidget> {
                             .toString());
                         return IconButton(
                           onPressed: widget.onPressed,
-                          icon: favourity.keys.contains(widget.productModel.id)
+                          icon: !favourity.keys.contains(widget.productModel.id)
                               ? Icon(
                                   Icons.favorite_border,
                                   color: Colors.red[400],
                                 )
                               : Icon(
                                   Icons.favorite,
-                                  color: Colors.white,
+                                  color: Colors.red,
                                 ),
                         );
                       }),

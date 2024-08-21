@@ -264,7 +264,7 @@ class _HomePageState extends State<HomePage> {
                                         img:
                                             "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTBbmndaKuy8w2TPeq2mCtia2PIxHYuV4uCng&s",
                                         name: pro.name!,
-                                        price: pro.price!.toDouble(),
+                                        price: pro.price!.toString(),
                                         description: pro.description!,
                                         id: pro.id!),
                                     onPressed: () {
@@ -355,7 +355,7 @@ class _HomePageState extends State<HomePage> {
                                     img:
                                         "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTBbmndaKuy8w2TPeq2mCtia2PIxHYuV4uCng&s",
                                     name: pro.name!,
-                                    price: pro.price!.toDouble(),
+                                    price: pro.price!.toString(),
                                     description: pro.description!,
                                     id: pro.id!),
                               ));

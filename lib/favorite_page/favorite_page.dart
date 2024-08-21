@@ -2,8 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:get_it/get_it.dart';
-import 'package:online_market/data/favourity_repository/controller/favourity_controller.dart';
+
 import 'package:online_market/home_page/models/productModel.dart';
 import 'package:online_market/utils/screen_size.dart';
 import 'package:online_market/widgets/favorite_widget.dart';
@@ -13,18 +12,15 @@ import 'package:online_market/widgets/text_widgets/middle_text_widget.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class FavoritePage extends StatefulWidget {
-  const FavoritePage({super.key});
-
   @override
   State<FavoritePage> createState() => _FavoritePageState();
 }
 
 class _FavoritePageState extends State<FavoritePage> {
-  var favorite = GetIt.instance<Favourity_Controller>();
   @override
   void initState() {
     // TODO: implement initState
-    favorite.readdb();
+    favourity.readdb();
     super.initState();
   }
 
@@ -86,20 +82,22 @@ class _FavoritePageState extends State<FavoritePage> {
                                       productModel: ProductModel(
                                           img:
                                               "https://static.vecteezy.com/system/resources/previews/008/619/502/non_2x/bag-yellow-orange-red-white-color-golden-background-wallpaper-copy-space-decoration-ornament-business-shopping-friday-sale-store-retail-product-special-surprise-commercial-discount-consumer-3d-render-photo.jpg",
-                                          name: "name",
-                                          price: 123,
-                                          description: "pro.description!",
-                                          id: ""),
+                                          name: favourity.favourit[index].name,
+                                          price:
+                                              favourity.favourit[index].price,
+                                          description:
+                                              favourity.favourit[index].dis,
+                                          id: favourity.favourit[index].id),
                                       onPressed: () {
                                         log("message");
-                                        favorite.checkdb(
-                                            favorite.favourit[index].id,
-                                            favorite.favourit[index]);
+                                        favourity.checkdb(
+                                            favourity.favourit[index].id,
+                                            favourity.favourit[index]);
                                       },
                                     )),
                               );
                             },
-                            childCount: favorite.favourit.length,
+                            childCount: favourity.favourit.length,
                           ),
                         ),
                       ],

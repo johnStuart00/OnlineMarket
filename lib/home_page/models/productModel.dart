@@ -1,6 +1,6 @@
 class ProductModel {
   String img;
-  double price;
+  String price;
   String name;
   String id;
   String description;
