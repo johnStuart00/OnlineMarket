@@ -18,19 +18,30 @@
   "turn_off": "Öçür",
   "turn_on": "Işlet",
   "close": "Ýap",
-   "turkmen": "Türkmen dili",
+  "turkmen": "Türkmen dili",
   "russian": "Rus dili",
   "english": "Iňlis dili",
   "light_theme": "Ýagty tema",
   "dark_theme": "Gara tema",
   "system_theme": "Enjam tema",
-   "favorites": "Halanýanlar",
-   "my_bag": "Meniň sumkam",
-    "subtotal": "Harytlaryň bahasy",
+  "favorites": "Halanýanlar",
+  "my_bag": "Meniň sumkam",
+  "subtotal": "Harytlaryň bahasy",
   "delivery": "Eltip bermek",
   "total_cost": "Jemi bahasy:",
-  "checkout": "Tassyklamak"
-   
+  "checkout": "Tassyklamak",
+  "search_field": "Gözleg meýdany",
+  "name": "Ady",
+  "name_content": "Ady Familiýa",
+  "phone_number": "Telefon belgisi",
+  "address": "Salgy",
+  "address_content": "Welaýat, Şäher, Köç",
+  "promo_code": "Promo kody"  ,
+  "congratulations": "Gutlaýarys!",
+  "congratulations_content": "Söwda edeniňiz üçin sag boluň! Sargydyňyz üstünlikli ýerleşdirildi.",
+  "error": "Ýalňyşlyk",
+  "add_to_cart": "Araba goşuň",
+  "subcategories": "Kiçi kategoriýalar"
 }
   
 

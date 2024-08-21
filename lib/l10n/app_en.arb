@@ -29,5 +29,17 @@
   "subtotal": "Subtotal",
   "delivery": "Delivery",
   "total_cost": "Total Cost:",
-  "checkout": "Checkout"
+  "checkout": "Checkout",
+  "search_field": "Search Field",
+  "name": "Name",
+  "name_content": "Name Surname",
+  "phone_number": "Phone Number",
+  "address": "Address",
+  "address_content": "Province, City, Street",
+  "promo_code": "Promo Code",
+  "congratulations": "Congratulations!",
+  "congratulations_content": "Thank you for shopping with us! Your order has been placed successfully.",
+  "error": "Error",
+  "add_to_cart": "Add To Cart",
+  "subcategories": "Subcategories"
 }

@@ -3,6 +3,7 @@ import 'package:get_it/get_it.dart';
 import 'package:online_market/widgets/closes_by_category_widget.dart';
 import 'package:online_market/widgets/closes_category_widget.dart';
 import 'package:online_market/widgets/text_widgets/middle_text_widget.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../data/product_repository/controller/product_controller.dart';
 
@@ -59,7 +60,9 @@ class SubcategoryByCategoryWidget extends StatelessWidget {
                           icon: const Icon(Icons.keyboard_arrow_left_rounded),
                         ),
                       ),
-                      const MiddleTextWidget(widgetText: 'Subcategories'),
+                      MiddleTextWidget(
+                        widgetText: AppLocalizations.of(context)!.subcategories,
+                      ),
                     ],
                   ),
                 ),

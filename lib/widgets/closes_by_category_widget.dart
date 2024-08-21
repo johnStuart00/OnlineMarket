@@ -7,6 +7,7 @@ import 'package:online_market/utils/screen_size.dart';
 import 'package:online_market/widgets/favorite_widget.dart';
 import 'package:online_market/widgets/product_container_widget.dart';
 import 'package:online_market/widgets/text_widgets/middle_text_widget.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class ClosesByCategoryWidget extends StatelessWidget {
   String name;
@@ -26,7 +27,9 @@ class ClosesByCategoryWidget extends StatelessWidget {
             case FutureStatus.pending:
               return CircularProgressIndicator();
             case FutureStatus.rejected:
-              return Text("Error");
+              return MiddleTextWidget(
+                widgetText: AppLocalizations.of(context)!.error,
+              );
             case FutureStatus.fulfilled:
               return Stack(
                 children: [

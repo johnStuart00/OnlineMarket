@@ -29,7 +29,18 @@
   "subtotal": "Суммарный итог",
   "delivery": "Доставка",
   "total_cost": "Общая стоимость:",
-  "checkout": "Касса"
- 
+  "checkout": "Касса",
+  "search_field": "Поле поиска",
+  "name": "Имя",
+  "name_content": "Имя Фамилия",
+  "phone_number": "Номер телефона",
+  "address": "Адрес",
+  "address_content": "Провинция, Город, Улица",
+  "promo_code": "Промо-код",
+  "congratulations": "Поздравляем!",
+  "congratulations_content": "Благодарим вас за покупки! Ваш заказ был успешно оформлен.",
+  "error": "Ошибка",
+  "add_to_cart": "Добавить в корзину",
+  "subcategories": "Подкатегории"
 }
   

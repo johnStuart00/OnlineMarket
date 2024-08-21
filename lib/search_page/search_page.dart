@@ -7,6 +7,8 @@ import 'package:online_market/widgets/closes_category_widget.dart';
 import 'package:online_market/widgets/search_field_widget.dart';
 import 'package:online_market/widgets/text_widgets/middle_text_widget.dart';
 
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 class SearchPage extends StatelessWidget {
   SearchPage({super.key});
 
@@ -46,12 +48,14 @@ class SearchPage extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const SizedBox(
+              SizedBox(
                 height: 40,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    MiddleTextWidget(widgetText: 'Search Field'),
+                    MiddleTextWidget(
+                      widgetText: AppLocalizations.of(context)!.search_field,
+                    ),
                   ],
                 ),
               ),

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:online_market/utils/screen_size.dart';
 import 'package:online_market/widgets/text_widgets/large_text_widget.dart';
 import 'package:online_market/widgets/text_widgets/middle_text_widget.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class FavoriteWidget extends StatefulWidget {
   const FavoriteWidget({super.key});
@@ -60,7 +61,7 @@ class _FavoriteWidgetState extends State<FavoriteWidget> {
                           icon: const Icon(Icons.keyboard_arrow_left_rounded),
                         ),
                       ),
-                      const MiddleTextWidget(widgetText: 'Sneaker Shop'),
+                      const MiddleTextWidget(widgetText: 'Category name'),
                       Container(
                         decoration: BoxDecoration(
                           color: Theme.of(context).cardColor,
@@ -210,14 +211,17 @@ class _FavoriteWidgetState extends State<FavoriteWidget> {
                         borderRadius:
                             const BorderRadius.all(Radius.circular(10)),
                       ),
-                      child: const Padding(
-                        padding: EdgeInsets.symmetric(
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(
                             vertical: 10.0, horizontal: 55.0),
                         child: Row(
                           children: [
-                            Icon(Icons.shopping_bag_rounded),
-                            SizedBox(width: 10.0),
-                            Text('Add To Cart'),
+                            const Icon(Icons.shopping_bag_rounded),
+                            const SizedBox(width: 10.0),
+                            MiddleTextWidget(
+                              widgetText:
+                                  AppLocalizations.of(context)!.add_to_cart,
+                            ),
                           ],
                         ),
                       ),

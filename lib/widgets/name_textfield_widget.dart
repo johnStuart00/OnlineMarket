@@ -3,9 +3,11 @@ import 'package:flutter/services.dart';
 
 // ignore: must_be_immutable
 class NameTextField extends StatefulWidget {
+  final String hintText;
   const NameTextField({
     super.key,
     required this.textFieldNameController,
+    required this.hintText,
   });
 
   final TextEditingController textFieldNameController;
@@ -32,6 +34,7 @@ class _NameTextFieldState extends State<NameTextField> {
         decoration: InputDecoration(
           fillColor: Theme.of(context).cardColor,
           border: const OutlineInputBorder(),
+          hintText: widget.hintText,
           suffix: GestureDetector(
             onTap: textFieldClear,
             child: const Icon(Icons.clear_rounded),

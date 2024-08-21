@@ -8,6 +8,7 @@ import 'package:online_market/utils/screen_size.dart';
 import 'package:online_market/widgets/brend_container_widget.dart';
 import 'package:online_market/widgets/closes_by_category_widget.dart';
 import 'package:online_market/widgets/text_widgets/middle_text_widget.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class SeeAllBrendsWindget extends StatefulWidget {
   BrendsController controller;
@@ -31,7 +32,8 @@ class _SeeAllBrendsWindgetState extends State<SeeAllBrendsWindget> {
           case FutureStatus.pending:
             return Center(child: CircularProgressIndicator());
           case FutureStatus.rejected:
-            return Text("error");
+            return MiddleTextWidget(
+                widgetText: AppLocalizations.of(context)!.error);
           case FutureStatus.fulfilled:
             return Padding(
               padding:
@@ -60,7 +62,7 @@ class _SeeAllBrendsWindgetState extends State<SeeAllBrendsWindget> {
                                   const Icon(Icons.keyboard_arrow_left_rounded),
                             ),
                           ),
-                          const MiddleTextWidget(widgetText: 'All Brends'),
+                          MiddleTextWidget(widgetText: 'All Brends'),
                         ],
                       ),
                     ),

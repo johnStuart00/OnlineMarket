@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class SearchBoxWidget extends StatefulWidget {
   final TextEditingController searchController;
@@ -25,12 +26,12 @@ class _SearchBoxWidgetState extends State<SearchBoxWidget> {
           decoration: InputDecoration(
             fillColor: Theme.of(context).cardColor,
             border: InputBorder.none,
-            hintText: "Search",
+            hintText: AppLocalizations.of(context)!.search_field,
             prefixIcon: const Icon(
               Icons.search_rounded,
             ),
             suffix: SizedBox(
-              width: 90,
+              width: 105,
               child: Row(
                 children: [
                   const Text(

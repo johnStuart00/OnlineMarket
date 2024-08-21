@@ -6,6 +6,7 @@ import 'package:online_market/widgets/phone_number_widget.dart';
 import 'package:online_market/widgets/text_widgets/large_text_widget.dart';
 import 'package:online_market/widgets/text_widgets/marker_text_widget.dart';
 import 'package:online_market/widgets/text_widgets/middle_text_widget.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class BagPageWidget extends StatefulWidget {
   const BagPageWidget({super.key});
@@ -22,6 +23,7 @@ class _BagPageWidgetState extends State<BagPageWidget> {
 
   @override
   Widget build(BuildContext context) {
+    final appLoc = AppLocalizations.of(context);
     return SafeArea(
       child: Scaffold(
         backgroundColor: Theme.of(context).primaryColor,
@@ -50,9 +52,13 @@ class _BagPageWidgetState extends State<BagPageWidget> {
                             icon: const Icon(Icons.keyboard_arrow_left_rounded),
                           ),
                         ),
-                        const Expanded(
-                            child: Center(
-                                child: MiddleTextWidget(widgetText: 'My Bag'))),
+                        Expanded(
+                          child: Center(
+                            child: MiddleTextWidget(
+                              widgetText: AppLocalizations.of(context)!.my_bag,
+                            ),
+                          ),
+                        ),
                       ],
                     ),
                   ),
@@ -75,31 +81,34 @@ class _BagPageWidgetState extends State<BagPageWidget> {
                           mainAxisAlignment: MainAxisAlignment.start,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            const MiddleTextWidget(widgetText: 'Name'),
+                            MiddleTextWidget(widgetText: appLoc!.name),
                             const SizedBox(height: 5),
                             NameTextField(
                               textFieldNameController: nameTextFieldController,
+                              hintText: appLoc.name_content,
                             ),
                             const SizedBox(height: 5),
-                            const MiddleTextWidget(widgetText: 'Phone Number'),
+                            MiddleTextWidget(widgetText: appLoc.phone_number),
                             const SizedBox(height: 5),
                             PhoneNumberTextField(
                               phoneNumberController:
                                   phoneNumberTextFieldController,
                             ),
                             const SizedBox(height: 5),
-                            const MiddleTextWidget(widgetText: 'Address'),
+                            MiddleTextWidget(widgetText: appLoc.address),
                             const SizedBox(height: 5),
                             NameTextField(
                               textFieldNameController:
                                   addressTextFieldController,
+                              hintText: appLoc.address_content,
                             ),
                             const SizedBox(height: 5),
-                            const MiddleTextWidget(widgetText: 'Promo Code'),
+                            MiddleTextWidget(widgetText: appLoc.promo_code),
                             const SizedBox(height: 5),
                             NameTextField(
                               textFieldNameController:
                                   promoCodeTextFieldController,
+                              hintText: '',
                             ),
                           ],
                         ),
@@ -118,19 +127,19 @@ class _BagPageWidgetState extends State<BagPageWidget> {
                     color: Theme.of(context).cardColor,
                     child: Column(
                       children: [
-                        const Row(
+                        Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            MiddleTextWidget(widgetText: 'Subtotal'),
-                            MarkerTextWidget(widgetText: '\$753.95'),
+                            MiddleTextWidget(widgetText: appLoc.subtotal),
+                            const MarkerTextWidget(widgetText: '\$753.95'),
                           ],
                         ),
                         const SizedBox(height: 10),
-                        const Row(
+                        Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            MiddleTextWidget(widgetText: 'Delivery'),
-                            MarkerTextWidget(widgetText: '\$60.00'),
+                            MiddleTextWidget(widgetText: appLoc.delivery),
+                            const MarkerTextWidget(widgetText: '\$60.00'),
                           ],
                         ),
                         const Divider(
@@ -140,62 +149,32 @@ class _BagPageWidgetState extends State<BagPageWidget> {
                           endIndent: 1,
                           color: Colors.grey,
                         ),
-                        const Row(
+                        Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            LargeTextWidget(widgetText: 'Total Cost:'),
-                            MarkerTextWidget(widgetText: '\$813.95'),
+                            LargeTextWidget(widgetText: appLoc.total_cost),
+                            const MarkerTextWidget(widgetText: '\$813.95'),
                           ],
                         ),
                         const SizedBox(height: 10.0),
-                        ElevatedButton(
-                          onPressed: () {
-                            if (nameTextFieldController.text.isNotEmpty &&
-                                phoneNumberTextFieldController
-                                    .text.isNotEmpty) {
-                              showDialog(
-                                context: context,
-                                builder: (BuildContext context) {
-                                  return AlertDialog(
-                                    title: const Text('Congratulations!'),
-                                    content: SizedBox(
-                                      height: 200,
-                                      child: Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.center,
-                                        children: [
-                                          LottieBuilder.asset(
-                                            'assets/lottie/congratulation.json',
-                                            height: 150,
-                                            width: 100,
-                                          ),
-                                          const SizedBox(height: 10),
-                                          const Text(
-                                            'Thank you for shopping with us! Your order has been placed successfully.',
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                    actions: [
-                                      TextButton(
-                                        onPressed: () {
-                                          Navigator.of(context)
-                                              .pop(); // Close the dialog
-                                        },
-                                        child: const Text('Close'),
-                                      ),
-                                    ],
-                                  );
-                                },
-                              );
-                            }
-                          },
-                          child: SizedBox(
-                            width: ScreenUtil.setWidth(context, 0.7),
-                            height: 40,
-                            child: const Center(child: Text('Checkout')),
+                        Expanded(
+                          child: ElevatedButton(
+                            onPressed: () {
+                              if (nameTextFieldController.text.isNotEmpty &&
+                                  phoneNumberTextFieldController
+                                      .text.isNotEmpty) {
+                                _congratulationsAlert(context, appLoc);
+                              }
+                            },
+                            child: SizedBox(
+                              width: ScreenUtil.setWidth(context, 0.7),
+                              height: 35,
+                              child: Center(
+                                child: MiddleTextWidget(
+                                  widgetText: appLoc.checkout,
+                                ),
+                              ),
+                            ),
                           ),
                         ),
                       ],
@@ -205,6 +184,48 @@ class _BagPageWidgetState extends State<BagPageWidget> {
               ],
             )),
       ),
+    );
+  }
+
+  Future<dynamic> _congratulationsAlert(
+      BuildContext context, AppLocalizations appLoc) {
+    return showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: MiddleTextWidget(
+            widgetText: appLoc.congratulations,
+          ),
+          content: SizedBox(
+            height: 200,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                LottieBuilder.asset(
+                  'assets/lottie/congratulation.json',
+                  height: 150,
+                  width: 100,
+                ),
+                const SizedBox(height: 10),
+                MiddleTextWidget(
+                  widgetText: appLoc.congratulations_content,
+                )
+              ],
+            ),
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: MiddleTextWidget(
+                widgetText: appLoc.close,
+              ),
+            ),
+          ],
+        );
+      },
     );
   }
 }
