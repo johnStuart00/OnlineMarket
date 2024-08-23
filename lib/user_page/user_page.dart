@@ -255,6 +255,7 @@ class _UserPageState extends State<UserPage> {
     final String rus = appLoc.russian;
     final String eng = appLoc.english;
     final String close = appLoc.close;
+
     showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -270,7 +271,9 @@ class _UserPageState extends State<UserPage> {
                 onChanged: (String? value) {
                   if (value != null) {
                     _setSelectedLanguage(value);
-                    OnlineMarket.setLocale(context, const Locale('tr'));
+                    setState(() {
+                      OnlineMarket.setLocale(context, const Locale('tr'));
+                    });
                     Navigator.of(context).pop();
                   }
                 },
@@ -282,7 +285,9 @@ class _UserPageState extends State<UserPage> {
                 onChanged: (String? value) {
                   if (value != null) {
                     _setSelectedLanguage(value);
-                    OnlineMarket.setLocale(context, const Locale('ru'));
+                    setState(() {
+                      OnlineMarket.setLocale(context, const Locale('ru'));
+                    });
                     Navigator.of(context).pop();
                   }
                 },
@@ -294,7 +299,9 @@ class _UserPageState extends State<UserPage> {
                 onChanged: (String? value) {
                   if (value != null) {
                     _setSelectedLanguage(value);
-                    OnlineMarket.setLocale(context, const Locale('en'));
+                    setState(() {
+                      OnlineMarket.setLocale(context, const Locale('en'));
+                    });
                     Navigator.of(context).pop();
                   }
                 },

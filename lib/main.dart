@@ -42,12 +42,10 @@ class OnlineMarket extends StatefulWidget {
   final AdaptiveThemeMode? savedThemeMode;
 
   static void setLocale(BuildContext context, Locale newLocale) {
-    final state = context.findAncestorStateOfType<_OnlineMarketState>();
+    final _OnlineMarketState? state =
+        context.findAncestorStateOfType<_OnlineMarketState>();
     if (state != null) {
       state.setLocale(newLocale);
-    } else {
-      // Handle the case where the state is not found
-      print('State not found');
     }
   }
 
@@ -62,7 +60,13 @@ class OnlineMarket extends StatefulWidget {
 }
 
 class _OnlineMarketState extends State<OnlineMarket> {
-  Locale _locale = const Locale('en');
+  late Locale _locale;
+
+  @override
+  void initState() {
+    super.initState();
+    _locale = widget.initialLocale;
+  }
 
   void setLocale(Locale locale) {
     setState(() {

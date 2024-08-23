@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:lottie/lottie.dart';
 import 'package:online_market/utils/screen_size.dart';
-import 'package:online_market/widgets/name_textfield_widget.dart';
-import 'package:online_market/widgets/phone_number_widget.dart';
 import 'package:online_market/widgets/text_widgets/large_text_widget.dart';
 import 'package:online_market/widgets/text_widgets/marker_text_widget.dart';
 import 'package:online_market/widgets/text_widgets/middle_text_widget.dart';
@@ -87,21 +86,21 @@ class _BagPageWidgetState extends State<BagPageWidget> {
                           children: [
                             MiddleTextWidget(widgetText: appLoc!.name),
                             const SizedBox(height: 5),
-                            NameTextField(
+                            _nameTextField(
                               textFieldNameController: nameTextFieldController,
                               hintText: appLoc.name_content,
                             ),
                             const SizedBox(height: 5),
                             MiddleTextWidget(widgetText: appLoc.phone_number),
                             const SizedBox(height: 5),
-                            PhoneNumberTextField(
+                            _phoneNumberTextField(
                               phoneNumberController:
                                   phoneNumberTextFieldController,
                             ),
                             const SizedBox(height: 5),
                             MiddleTextWidget(widgetText: appLoc.address),
                             const SizedBox(height: 5),
-                            NameTextField(
+                            _nameTextField(
                               textFieldNameController:
                                   addressTextFieldController,
                               hintText: appLoc.address_content,
@@ -109,7 +108,7 @@ class _BagPageWidgetState extends State<BagPageWidget> {
                             const SizedBox(height: 5),
                             MiddleTextWidget(widgetText: appLoc.promo_code),
                             const SizedBox(height: 5),
-                            NameTextField(
+                            _nameTextField(
                               textFieldNameController:
                                   promoCodeTextFieldController,
                               hintText: '',
@@ -230,6 +229,109 @@ class _BagPageWidgetState extends State<BagPageWidget> {
           ],
         );
       },
+    );
+  }
+}
+
+class _nameTextField extends StatefulWidget {
+  final String hintText;
+  const _nameTextField({
+    super.key,
+    required this.textFieldNameController,
+    required this.hintText,
+  });
+
+  final TextEditingController textFieldNameController;
+
+  @override
+  State<_nameTextField> createState() => _nameTextFieldState();
+}
+
+class _nameTextFieldState extends State<_nameTextField> {
+  void textFieldClear() {
+    widget.textFieldNameController.clear();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      child: TextField(
+        controller: widget.textFieldNameController,
+        keyboardType: TextInputType.text,
+        inputFormatters: [
+          LengthLimitingTextInputFormatter(50),
+          FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z0-9\s]')),
+        ],
+        decoration: InputDecoration(
+          fillColor: Theme.of(context).cardColor,
+          border: const OutlineInputBorder(),
+          hintText: widget.hintText,
+          suffix: GestureDetector(
+            onTap: textFieldClear,
+            child: const Icon(Icons.clear_rounded),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _phoneNumberTextField extends StatefulWidget {
+  const _phoneNumberTextField({
+    super.key,
+    required this.phoneNumberController,
+  });
+
+  final TextEditingController phoneNumberController;
+
+  @override
+  State<_phoneNumberTextField> createState() => _phoneNumberTextFieldState();
+}
+
+class _phoneNumberTextFieldState extends State<_phoneNumberTextField> {
+  void textFieldClear() {
+    widget.phoneNumberController.clear();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      child: TextField(
+        controller: widget.phoneNumberController,
+        keyboardType: TextInputType.phone,
+        inputFormatters: [
+          LengthLimitingTextInputFormatter(9),
+          FilteringTextInputFormatter.digitsOnly,
+          _PhoneNumberFormatter(),
+        ],
+        decoration: InputDecoration(
+          fillColor: Theme.of(context).cardColor,
+          border: const OutlineInputBorder(),
+          prefix: const Text('+993 '),
+          //hintText: '-- -- -- --',
+          suffix: GestureDetector(
+            onTap: textFieldClear,
+            child: const Icon(Icons.clear_rounded),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _PhoneNumberFormatter extends TextInputFormatter {
+  @override
+  TextEditingValue formatEditUpdate(
+      TextEditingValue oldValue, TextEditingValue newValue) {
+    var newText = newValue.text;
+
+    if (newText.length > 2 && !newText.contains(' ')) {
+      newText = '${newText.substring(0, 2)} ${newText.substring(2)}';
+    }
+
+    return newValue.copyWith(
+      text: newText,
+      selection: TextSelection.collapsed(offset: newText.length),
     );
   }
 }
