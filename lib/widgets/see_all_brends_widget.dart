@@ -49,18 +49,21 @@ class _SeeAllBrendsWindgetState extends State<SeeAllBrendsWindget> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Container(
-                            decoration: BoxDecoration(
-                              color: Theme.of(context).cardColor,
-                              borderRadius: BorderRadius.circular(30),
-                            ),
-                            child: IconButton(
-                              onPressed: () {
-                                Navigator.pop(context);
-                              },
-                              icon:
-                                  const Icon(Icons.keyboard_arrow_left_rounded),
-                            ),
+                          GestureDetector(
+                            onTap: () {
+                              Navigator.pop(context);
+                            },
+                            child: Container(
+                                width: 45,
+                                alignment: Alignment.center,
+                                decoration: BoxDecoration(
+                                  color: Theme.of(context).cardColor,
+                                  borderRadius: BorderRadius.circular(30),
+                                ),
+                                child: Image.asset(
+                                  'assets/icons/back.png',
+                                  color: Theme.of(context).iconTheme.color,
+                                )),
                           ),
                           MiddleTextWidget(widgetText: 'All Brends'),
                         ],

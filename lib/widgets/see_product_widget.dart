@@ -49,28 +49,36 @@ class _FavoriteWidgetState extends State<FavoriteWidget> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Container(
-                        decoration: BoxDecoration(
-                          color: Theme.of(context).cardColor,
-                          borderRadius: BorderRadius.circular(30),
-                        ),
-                        child: IconButton(
-                          onPressed: () {
-                            Navigator.pop(context);
-                          },
-                          icon: const Icon(Icons.keyboard_arrow_left_rounded),
-                        ),
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.pop(context);
+                        },
+                        child: Container(
+                            width: 45,
+                            alignment: Alignment.center,
+                            decoration: BoxDecoration(
+                              color: Theme.of(context).cardColor,
+                              borderRadius: BorderRadius.circular(30),
+                            ),
+                            child: Image.asset(
+                              'assets/icons/back.png',
+                              color: Theme.of(context).iconTheme.color,
+                            )),
                       ),
                       const MiddleTextWidget(widgetText: 'Category name'),
-                      Container(
-                        decoration: BoxDecoration(
-                          color: Theme.of(context).cardColor,
-                          borderRadius: BorderRadius.circular(30),
-                        ),
-                        child: IconButton(
-                          onPressed: () {},
-                          icon: const Icon(Icons.shopping_bag_rounded),
-                        ),
+                      GestureDetector(
+                        onTap: () {},
+                        child: Container(
+                            width: 45,
+                            alignment: Alignment.center,
+                            decoration: BoxDecoration(
+                              color: Theme.of(context).cardColor,
+                              borderRadius: BorderRadius.circular(30),
+                            ),
+                            child: Image.asset(
+                              'assets/icons/bag_on.png',
+                              color: Theme.of(context).iconTheme.color,
+                            )),
                       ),
                     ],
                   ),
@@ -84,34 +92,7 @@ class _FavoriteWidgetState extends State<FavoriteWidget> {
                 slivers: [
                   const SliverToBoxAdapter(child: SizedBox(height: 10.0)),
                   SliverToBoxAdapter(
-                    child: Container(
-                      height: 450,
-                      decoration: const BoxDecoration(
-                        borderRadius: BorderRadius.all(Radius.circular(10)),
-                        image: DecorationImage(
-                          image: AssetImage('assets/product_photo/nike001.png'),
-                          fit: BoxFit.fill,
-                        ),
-                      ),
-                      child: SizedBox(
-                        width: ScreenUtil.screenWidth(context),
-                        child: const Padding(
-                          padding: EdgeInsets.only(left: 10),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              SizedBox(
-                                  width: 240,
-                                  child: LargeTextWidget(
-                                      widgetText:
-                                          'Nike Air Max 270 Essential')),
-                              MiddleTextWidget(widgetText: 'Men\'s shoes'),
-                              LargeTextWidget(widgetText: '\$179.39'),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
+                    child: _seeProductLarge(),
                   ),
                   const SliverToBoxAdapter(child: SizedBox(height: 10.0)),
                   SliverToBoxAdapter(
@@ -155,13 +136,7 @@ class _FavoriteWidgetState extends State<FavoriteWidget> {
                   ),
                   const SliverToBoxAdapter(child: SizedBox(height: 10.0)),
                   const SliverToBoxAdapter(
-                    child: Padding(
-                      padding: EdgeInsets.all(8.0),
-                      child: MiddleTextWidget(
-                        widgetText:
-                            'The Max Air 270 unit delivers unrivaled, all-day comfort. The sleek, running-inspired design roots you to everything Nike',
-                      ),
-                    ),
+                    child: _infoAboutProduct(),
                   ),
                   const SliverToBoxAdapter(child: SizedBox(height: 350)),
                 ],
@@ -182,47 +157,56 @@ class _FavoriteWidgetState extends State<FavoriteWidget> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    Container(
-                      height: 50,
-                      width: 50,
-                      decoration: BoxDecoration(
-                        color: Theme.of(context).primaryColor,
-                        borderRadius: BorderRadius.circular(30),
-                      ),
-                      child: IconButton(
-                        onPressed: () {
-                          _favoritePinned();
-                        },
-                        icon: _favoriteButtonPinned
-                            ? Icon(
-                                Icons.favorite_border,
-                                color: Colors.red[400],
-                              )
-                            : Icon(
-                                Icons.favorite,
-                                color: Colors.red[400],
-                              ),
+                    Expanded(
+                      child: Padding(
+                        padding: const EdgeInsets.all(22.0),
+                        child: Container(
+                          padding: const EdgeInsets.all(5.0),
+                          decoration: BoxDecoration(
+                            color: Theme.of(context).primaryColor,
+                            borderRadius: BorderRadius.circular(30),
+                          ),
+                          child: IconButton(
+                            onPressed: () {
+                              _favoritePinned();
+                            },
+                            icon: _favoriteButtonPinned
+                                ? Icon(
+                                    Icons.favorite_border,
+                                    color: Colors.red[400],
+                                  )
+                                : Icon(
+                                    Icons.favorite,
+                                    color: Colors.red[400],
+                                  ),
+                          ),
+                        ),
                       ),
                     ),
-                    Container(
-                      height: 50,
-                      decoration: BoxDecoration(
-                        color: Theme.of(context).primaryColor,
-                        borderRadius:
-                            const BorderRadius.all(Radius.circular(10)),
-                      ),
+                    Expanded(
+                      flex: 2,
                       child: Padding(
-                        padding: const EdgeInsets.symmetric(
-                            vertical: 10.0, horizontal: 55.0),
-                        child: Row(
-                          children: [
-                            const Icon(Icons.shopping_bag_rounded),
-                            const SizedBox(width: 10.0),
-                            MiddleTextWidget(
-                              widgetText:
-                                  AppLocalizations.of(context)!.add_to_cart,
-                            ),
-                          ],
+                        padding: const EdgeInsets.all(22.0),
+                        child: Container(
+                          padding: const EdgeInsets.all(16.0),
+                          decoration: BoxDecoration(
+                            color: Theme.of(context).primaryColor,
+                            borderRadius:
+                                const BorderRadius.all(Radius.circular(30)),
+                          ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              Image.asset(
+                                'assets/icons/bag_on.png',
+                                color: Theme.of(context).iconTheme.color,
+                              ),
+                              MiddleTextWidget(
+                                widgetText:
+                                    AppLocalizations.of(context)!.add_to_cart,
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     ),
@@ -231,6 +215,60 @@ class _FavoriteWidgetState extends State<FavoriteWidget> {
               ),
             ),
           ],
+        ),
+      ),
+    );
+  }
+}
+
+class _infoAboutProduct extends StatelessWidget {
+  const _infoAboutProduct({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return const Padding(
+      padding: EdgeInsets.all(8.0),
+      child: MiddleTextWidget(
+        widgetText:
+            'The Max Air 270 unit delivers unrivaled, all-day comfort. The sleek, running-inspired design roots you to everything Nike',
+      ),
+    );
+  }
+}
+
+class _seeProductLarge extends StatelessWidget {
+  const _seeProductLarge({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 450,
+      decoration: const BoxDecoration(
+        borderRadius: BorderRadius.all(Radius.circular(10)),
+        image: DecorationImage(
+          image: AssetImage('assets/product_photo/nike001.png'),
+          fit: BoxFit.fill,
+        ),
+      ),
+      child: SizedBox(
+        width: ScreenUtil.screenWidth(context),
+        child: const Padding(
+          padding: EdgeInsets.only(left: 10),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SizedBox(
+                  width: 240,
+                  child: LargeTextWidget(
+                      widgetText: 'Nike Air Max 270 Essential')),
+              MiddleTextWidget(widgetText: 'Men\'s shoes'),
+              LargeTextWidget(widgetText: '\$179.39'),
+            ],
+          ),
         ),
       ),
     );

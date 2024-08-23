@@ -5,7 +5,7 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 
 import 'package:online_market/home_page/models/productModel.dart';
 import 'package:online_market/utils/screen_size.dart';
-import 'package:online_market/widgets/favorite_widget.dart';
+import 'package:online_market/widgets/see_product_widget.dart';
 import 'package:online_market/widgets/product_container_widget.dart';
 import 'package:online_market/widgets/text_widgets/middle_text_widget.dart';
 

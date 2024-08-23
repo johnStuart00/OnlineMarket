@@ -14,7 +14,7 @@ import 'package:online_market/home_page/models/productModel.dart';
 import 'package:online_market/widgets/brend_container_widget.dart';
 import 'package:online_market/widgets/category_container_widget.dart';
 import 'package:online_market/widgets/closes_by_category_widget.dart';
-import 'package:online_market/widgets/favorite_widget.dart';
+import 'package:online_market/widgets/see_product_widget.dart';
 import 'package:online_market/widgets/product_grid_widget.dart';
 import 'package:online_market/widgets/see_all_brends_widget.dart';
 import 'package:online_market/widgets/subcategory_by_category_widget.dart';

@@ -92,11 +92,12 @@ class _ObjectContainerState extends State<ObjectContainer> {
                     child: Container(
                       width: ScreenUtil.setWidth(context, 0.18),
                       padding: const EdgeInsets.symmetric(
-                          horizontal: 18.0, vertical: 5.0),
+                        horizontal: 18.0,
+                      ),
                       decoration: const BoxDecoration(
                           color: Colors.red,
                           borderRadius: BorderRadius.all(Radius.circular(10))),
-                      child: const Icon(Icons.delete),
+                      child: Image.asset('assets/icons/delete.png'),
                     ),
                   ),
                   Container(

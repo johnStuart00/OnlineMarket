@@ -4,7 +4,7 @@ import 'package:mobx/mobx.dart';
 import 'package:online_market/data/product_repository/controller/product_controller.dart';
 import 'package:online_market/home_page/models/productModel.dart';
 import 'package:online_market/utils/screen_size.dart';
-import 'package:online_market/widgets/favorite_widget.dart';
+import 'package:online_market/widgets/see_product_widget.dart';
 import 'package:online_market/widgets/product_container_widget.dart';
 import 'package:online_market/widgets/text_widgets/middle_text_widget.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -44,18 +44,21 @@ class ClosesByCategoryWidget extends StatelessWidget {
                         height: 40,
                         child: Row(
                           children: [
-                            Container(
-                              decoration: BoxDecoration(
-                                color: Theme.of(context).cardColor,
-                                borderRadius: BorderRadius.circular(30),
-                              ),
-                              child: IconButton(
-                                onPressed: () {
-                                  Navigator.pop(context);
-                                },
-                                icon: const Icon(
-                                    Icons.keyboard_arrow_left_rounded),
-                              ),
+                            GestureDetector(
+                              onTap: () {
+                                Navigator.pop(context);
+                              },
+                              child: Container(
+                                  width: 45,
+                                  alignment: Alignment.center,
+                                  decoration: BoxDecoration(
+                                    color: Theme.of(context).cardColor,
+                                    borderRadius: BorderRadius.circular(30),
+                                  ),
+                                  child: Image.asset(
+                                    'assets/icons/back.png',
+                                    color: Theme.of(context).iconTheme.color,
+                                  )),
                             ),
                             Expanded(
                               child: Center(
