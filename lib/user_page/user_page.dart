@@ -34,15 +34,46 @@ class _UserPageState extends State<UserPage> {
       _sections = [
         Section(
           isNotificationsOn
-              ? Icons.notifications_active
-              : Icons.notifications_off,
+              ? Image.asset(
+                  'assets/icons/notification_on.png',
+                  color: Theme.of(context).iconTheme.color,
+                )
+              : Image.asset(
+                  'assets/icons/notification_off.png',
+                  color: Theme.of(context).iconTheme.color,
+                ),
           AppLocalizations.of(context)!.notifications,
         ),
-        Section(Icons.chat, AppLocalizations.of(context)!.keep_in_touch),
-        Section(Icons.info, AppLocalizations.of(context)!.about_us),
-        Section(Icons.language, AppLocalizations.of(context)!.language),
-        Section(Icons.dark_mode_outlined, AppLocalizations.of(context)!.theme),
-        Section(Icons.delivery_dining, AppLocalizations.of(context)!.delivery),
+        Section(
+            Image.asset(
+              'assets/icons/keep_in_touch.png',
+              color: Theme.of(context).iconTheme.color,
+            ),
+            AppLocalizations.of(context)!.keep_in_touch),
+        Section(
+            Image.asset(
+              'assets/icons/info.png',
+              color: Theme.of(context).iconTheme.color,
+            ),
+            AppLocalizations.of(context)!.about_us),
+        Section(
+            Image.asset(
+              'assets/icons/language.png',
+              color: Theme.of(context).iconTheme.color,
+            ),
+            AppLocalizations.of(context)!.language),
+        Section(
+            Image.asset(
+              'assets/icons/theme.png',
+              color: Theme.of(context).iconTheme.color,
+            ),
+            AppLocalizations.of(context)!.theme),
+        Section(
+            Image.asset(
+              'assets/icons/delivery.png',
+              color: Theme.of(context).iconTheme.color,
+            ),
+            AppLocalizations.of(context)!.delivery),
       ];
     });
   }
@@ -108,7 +139,7 @@ class _UserPageState extends State<UserPage> {
                   final apploc = AppLocalizations.of(context);
                   final section = _sections[index];
                   return UserPageWidget(
-                    icon: section.icon,
+                    image: section.image,
                     label: section.label,
                     onTap: () {
                       if (section.label == apploc!.notifications) {
@@ -348,8 +379,8 @@ class _UserPageState extends State<UserPage> {
 }
 
 class Section {
-  final IconData icon;
+  final Image image;
   final String label;
 
-  Section(this.icon, this.label);
+  Section(this.image, this.label);
 }

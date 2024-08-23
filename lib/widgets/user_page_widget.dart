@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:online_market/widgets/text_widgets/middle_text_widget.dart';
 
 class UserPageWidget extends StatelessWidget {
-  final IconData icon;
+  final Image image;
   final String label;
   final VoidCallback? onTap;
 
   const UserPageWidget({
-    required this.icon,
+    required this.image,
     required this.label,
     this.onTap,
     super.key,
@@ -28,11 +28,7 @@ class UserPageWidget extends StatelessWidget {
               borderRadius: BorderRadius.circular(10),
             ),
             child: Center(
-              child: Icon(
-                icon,
-                size: 40,
-                color: Theme.of(context).iconTheme.color,
-              ),
+              child: image,
             ),
           ),
           const SizedBox(height: 5),
