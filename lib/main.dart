@@ -1,14 +1,11 @@
-import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/services.dart';
-import 'package:hive/hive.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:online_market/data/models/favourity_model.dart';
 import 'package:online_market/splash_screen.dart';
 import 'package:online_market/utils/app_themes.dart';
-import 'package:path_provider/path_provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'core/network/di/app_injections.dart';
@@ -22,8 +19,8 @@ void main() async {
   await AppInjections.registerInjections();
   SystemChrome.setPreferredOrientations(
       [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
-  Directory directory = await getApplicationDocumentsDirectory();
-  Hive.init(directory.path);
+
+  Hive.initFlutter();
   Hive.registerAdapter(FavouritymodelAdapter());
   await Hive.openBox<Favourity_model>('favourity');
   runApp(

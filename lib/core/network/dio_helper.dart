@@ -4,8 +4,8 @@ import 'package:dio/dio.dart';
 import 'interceptors/api_interceptor.dart';
 
 class Configs {
-  static const baseUrl = 'https://han.efir.su/api/v1/';
-  static const imgUrl = 'https://han.efir.su/api/v1';
+  static const baseUrl = 'https://gold-api.galkyn.com/api/';
+  static const imgUrl = 'https://gold-api.galkyn.com/api/';
 }
 
 class DioHelper {

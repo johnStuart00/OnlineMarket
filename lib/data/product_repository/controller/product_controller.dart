@@ -1,8 +1,6 @@
 import 'dart:developer';
 
 import 'package:mobx/mobx.dart';
-import 'package:online_market/data/banner_repository/dto/brends_dto.dart';
-import 'package:online_market/data/banner_repository/repository/brends_repository.dart';
 import 'package:online_market/data/product_repository/dto/product_dto.dart';
 import 'package:online_market/data/product_repository/repository/product_repository.dart';
 

@@ -1,4 +1,4 @@
-package com.example.online_market
+package com.example.onlinemarket
 
 import io.flutter.embedding.android.FlutterActivity
 
