@@ -58,7 +58,9 @@ class _MainPageContollerState extends State<MainPageContoller> {
             color: _page == 2 ? Colors.white : Colors.grey,
           ),
           Image.asset(
-            'assets/icons/search.png',
+            _page == 3
+                ? 'assets/icons/search_on.png'
+                : 'assets/icons/search_off.png',
             color: _page == 3 ? Colors.white : Colors.grey,
           ),
           Image.asset(
