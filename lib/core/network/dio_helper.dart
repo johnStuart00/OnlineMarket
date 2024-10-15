@@ -5,7 +5,7 @@ import 'interceptors/api_interceptor.dart';
 
 class Configs {
   static const baseUrl = 'https://gold-api.galkyn.com/api/';
-  static const imgUrl = 'https://gold-api.galkyn.com/api/';
+  static const imgUrl = 'https://gold-api.galkyn.com/media/ ';
 }
 
 class DioHelper {
